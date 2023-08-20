@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from "styled-components";
-import Logo from "../../assets/Mainpage/logo.svg"
+import Logo from "../assets/Mainpage/logo.svg"
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   return (
@@ -8,18 +9,18 @@ const Header = () => {
       <HeaderWrapper>
         <Left src={Logo}/>
         <Right>
-          <TextButton>침해사항</TextButton>
-          <TextButton>처벌</TextButton>
-          <TextButton>신고방법</TextButton>
-          <TextButton>다른 사례들</TextButton>
+          <TextButton to={'/'}>홈</TextButton>
+          <TextButton>이야기 하기</TextButton>
+          <TextButton to={"/hear"}>이야기 듣기</TextButton>
+          <TextButton>더욱 알리기</TextButton>
         </Right>
       </HeaderWrapper>
     </HeaderContainer>
   );
 };
 
-const TextButton = styled.button`
-  color: var(--text-contents, #3E3E4E);
+const TextButton = styled(Link)`
+  color: var(--text-contents, #524437);
   font-family: 'Pretendard', sans-serif;
   font-size: 19px;
   font-style: normal;
@@ -27,6 +28,7 @@ const TextButton = styled.button`
   line-height: normal;
   background: none;
   border: 0;
+  text-decoration: none;
 `;
 const Right = styled.div`
   display: flex;

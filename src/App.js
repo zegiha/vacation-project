@@ -3,7 +3,7 @@ import React, {useEffect} from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Mainpage from "./page/Mainpage";
-import Instancepage from "./page/Instancepage";
+import Hear from "./page/Hear";
 
 function App() {
   useEffect(() => {
@@ -13,7 +13,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Mainpage/>}/>
-        <Route path="/instance" element={<Instancepage/>}/>
+        <Route path={"/hear"} element={<Hear/>}/>
       </Routes>
     </BrowserRouter>
 

@@ -11,37 +11,35 @@ export const MainWrapper = styled.div`
   flex-direction: column;
   justify-content: start;
   width: 1120px;
-  gap: 100px;
+  gap: ${(props) => props.gap};
   padding-bottom: 180px;
   padding-top: 180px;
 `;
 export const Title = styled.div`
   width: auto;
-  color: var(--text-title, #1B1B22);
-  font-family: Pretendard;
-  font-size: 40px;
+  color: var(--text-title, #2C231E);
+  font-family: 'Pretendard';
+  font-size: 35px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
 `;
-export const Subtitle = styled.div`
-  color: var(--text-subtitle, #47FF18);
-  font-family: Pretendard;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-`;
-export const Contents = styled.span`
-  color: var(--text-contents, #3E3E4E);
-  font-family: Pretendard;
-  font-size: 19px;
+export const Contents = styled.div`
+  color: var(--text-contents, #524437);
+  font-family: 'Pretendard';
+  font-size: 22px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
 `;
-export const Titles = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+export const Point = styled.span`
+  color: transparent;
+  background: var(--text-point);
+  font-family: 'Pretendard';
+  font-size: ${(props) => props.size};
+  font-style: normal;
+  font-weight: ${(props) => props.weight};
+  line-height: normal;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 `;

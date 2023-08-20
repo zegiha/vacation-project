@@ -1,14 +1,17 @@
 *{
   padding: 0;
   margin: 0;
+  font-family: 'Pretendard';
 }
 :root{
-  --text-contents: #3E3E4E;
-  --text-title: #1B1B22;
-  --text-point: linear-gradient(180deg, #84FF9F 0%, #3F0 100%);
+  --text-contents: #524437;
+  --text-title: #2C231E;
+  --text-point: linear-gradient(180deg, #FF5733 0%, #F90 100%);
   --text-subtitle: #47FF18;
 }
 @font-face {
   font-family: 'Pretendard';
   src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
 }

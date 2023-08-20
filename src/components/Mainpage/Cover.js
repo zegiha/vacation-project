@@ -22,7 +22,7 @@ const Cover = () => {
 
 const Bottom = styled.button`
   position: absolute;
-  bottom: 60px;
+  bottom: 5vh;
   display: flex;
   gap: 10px;
   flex-direction: column;
@@ -50,7 +50,7 @@ const Top = styled.div`
   display: flex;
   flex-direction: column;
   gap: 70px;
-  margin-top: 373px;
+  margin-top: 37vh;
 `;
 const CoverTitle = styled.div`
   color: #FFF;
