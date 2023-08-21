@@ -2,14 +2,14 @@ import {React, useState} from 'react';
 import Header from "../components/Header";
 import styled from "styled-components";
 import {Contents, Title} from "../atoms/Atomic";
-import {write} from "../data/message";
 import {Link} from "react-router-dom";
+import Footer from "../components/Footer";
 
 const Tell = () => {
   const [name, setName] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [fileName, setFileName] = useState('');
+  const [fileName, setFileName] = useState(null);
 
   const saveName = event => {
     setName(event.target.value);
@@ -25,7 +25,7 @@ const Tell = () => {
   }
   
   function writing() {
-    write(name, title, content, fileName);
+    console.log(name, title, content, fileName);
   }
 
   return (
@@ -58,6 +58,7 @@ const Tell = () => {
           </Section>
         </Wrapper>
       </Container>
+      <Footer/>
     </>
   );
 };

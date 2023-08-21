@@ -3,9 +3,9 @@ import styled from "styled-components";
 import {Contents, MainContainer, MainWrapper, Point, Title} from "../../atoms/Atomic";
 import news from '../../assets/Mainpage/news.png'
 
-const Introduce = () => {
+const Introduce = ({scRef}) => {
   return (
-    <MainContainer>
+    <MainContainer ref={scRef}>
       <MainWrapper gap={'100px'}>
         <TempContainer>
           <div>

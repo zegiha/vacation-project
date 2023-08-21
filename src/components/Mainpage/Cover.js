@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Background from '../../assets/Mainpage/background.png'
 import Arrow from '../../assets/Mainpage/arrow.svg'
 
-const Cover = () => {
+const Cover = ({sc}) => {
   return (
     <CoverContainer>
       <CoverWrapper>
@@ -13,7 +13,7 @@ const Cover = () => {
           <CoverTitle data-aos="fade-right" data-aos-duration={"700"}>선생님의 <Point>권리</Point>를 응원합니다.</CoverTitle>
         </Top>
       </CoverWrapper>
-      <Bottom>더 알아보기<br/>
+      <Bottom onClick={sc}>더 알아보기<br/>
         <img src={Arrow} alt="ArrowImg"/>
       </Bottom>
     </CoverContainer>

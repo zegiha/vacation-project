@@ -2,7 +2,24 @@ import React from 'react';
 import styled from "styled-components";
 import Header from "../components/Header";
 import {Title} from "../atoms/Atomic";
-import {message} from "../data/message";
+import Footer from "../components/Footer";
+
+let message = [
+  {
+    bool : true,
+    name : '이서율',
+    title: 'title',
+    file : 'pic',
+    contents : '힘들다',
+  },
+  {
+    bool : false,
+    title: 'title',
+    name : '이서율',
+    file : 'pic',
+    contents : '힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 ',
+  },
+];
 
 const Hear = () => {
   return (
@@ -37,6 +54,7 @@ const Hear = () => {
           </Box>
         </Wrapper>
       </Container>
+      <Footer/>
     </>
   );
 };

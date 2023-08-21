@@ -2,13 +2,22 @@ import React from 'react';
 import Header from "../components/Header";
 import Cover from "../components/Mainpage/Cover";
 import Introduce from "../components/Mainpage/Introduce";
+import Footer from "../components/Footer";
 
 const Mainpage = () => {
+  const ref = React.useRef(null);
+  function gotoScroll() {
+    if(ref !== null) {
+      const { offsetTop } = ref.current;
+      window.scrollTo({ behavior: "smooth", top: offsetTop});
+    }
+  }
   return (
     <>
       <Header/>
-      <Cover/>
-      <Introduce/>
+      <Cover sc={gotoScroll}/>
+      <Introduce scRef={ref}/>
+      <Footer/>
     </>
   );
 };
