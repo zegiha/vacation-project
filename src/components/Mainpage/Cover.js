@@ -45,6 +45,9 @@ const Point = styled.span`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  @media (max-width: 1350px) {
+    font-size: 50px;
+  }
 `;
 const Top = styled.div`
   display: flex;
@@ -59,12 +62,16 @@ const CoverTitle = styled.div`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  @media (max-width: 1350px) {
+    font-size: 45px;
+  }
 `;
 const CoverWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 263px;
   width: 1120px;
+  margin: 0 100px;
 `;
 const CoverContainer = styled.div`
   display: flex;

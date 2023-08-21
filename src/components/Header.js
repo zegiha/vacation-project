@@ -12,7 +12,7 @@ const Header = () => {
           <TextButton to={'/'}>홈</TextButton>
           <TextButton to={'/tell'}>이야기 하기</TextButton>
           <TextButton to={'/hear'}>이야기 듣기</TextButton>
-          <TextButton>더욱 알리기</TextButton>
+          <TextButton to={'/report'}>더욱 알리기</TextButton>
         </Right>
       </HeaderWrapper>
     </HeaderContainer>
@@ -29,6 +29,12 @@ const TextButton = styled(Link)`
   background: none;
   border: 0;
   text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: all 0.3s;
+  &:hover {
+    background: #efefef;
+  }
 `;
 const Right = styled.div`
   display: flex;

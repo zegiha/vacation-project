@@ -13,6 +13,20 @@ let message = [
     contents : '힘들다',
   },
   {
+    bool : true,
+    name : '이서율',
+    title: 'title',
+    file : 'pic',
+    contents : '힘들다',
+  },
+  {
+    bool : true,
+    name : '이서율',
+    title: 'title',
+    file : 'pic',
+    contents : '힘들다',
+  },
+  {
     bool : false,
     title: 'title',
     name : '이서율',
@@ -110,18 +124,28 @@ const Box = styled.div`
   background: #FFF8F1;
   display: flex;
   padding: 35px;
-  width: 1050px;
+  width: 980px;
   gap: 40px;
   flex-wrap: wrap;
+  @media(max-width: 1070px) {
+    width: 640px;
+  }
+  @media(max-width: 730px) {
+    width:300px;
+  }
 `;
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: auto;
   gap: 50px;
+  max-width: 1120px;
+  width: 100%;
+  margin: 0 10000px;
 `;
 const Container = styled.div`
   display: flex;
+  width: 100%;
   justify-content: center;
   align-items: center;
   padding-top: 110px;

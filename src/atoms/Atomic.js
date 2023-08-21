@@ -14,6 +14,7 @@ export const MainWrapper = styled.div`
   gap: ${(props) => props.gap};
   padding-bottom: 180px;
   padding-top: 180px;
+  margin: 0 100px;
 `;
 export const Title = styled.div`
   width: auto;
@@ -23,6 +24,9 @@ export const Title = styled.div`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  @media(max-width: 1080px){
+    font-size: 27px;
+  }
 `;
 export const Contents = styled.div`
   color: var(--text-contents, #524437);
@@ -31,6 +35,9 @@ export const Contents = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  @media(max-width: 1080px) {
+    font-size: 20px;
+  }
 `;
 export const Point = styled.span`
   color: transparent;

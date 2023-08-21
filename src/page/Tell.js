@@ -37,7 +37,7 @@ const Tell = () => {
           <Section data-aos={"fade-up"}>
             <Titles>
               <Contents>이름</Contents>
-              <TitleInput type={'text'} placeholder={'익명도 가능해요'} onChange={saveName} value={name}/>
+              <TitleInput type={'text'} placeholder={'익명도 가능해요!'} onChange={saveName} value={name}/>
             </Titles>
             <Titles>
               <Contents>제목</Contents>
@@ -75,7 +75,7 @@ const FileInput = styled.input`
   vertical-align: middle;
   border-radius: 4px;
   border: 2px solid var(--line, rgba(0, 0, 0, 0.10));
-  width: 81.5%;
+  width: 80.5%;
   color: var(--text-contents);
   &:focus{
     border: 2px solid var(--line, rgba(0, 0, 0, 0.10));
@@ -86,7 +86,8 @@ const FileLabel = styled.label`
   border-radius: 4px;
   border: 2px solid var(--line, rgba(0, 0, 0, 0.10));
   background: none;
-  display: inline-flex;
+  display: flex;
+  width: 10%;
   padding: 10px 15px;
   width: max-content;
   transition: all 0.3s;
@@ -122,7 +123,7 @@ const ButtonContainer = styled.div`
 `;
 const Textarea = styled.textarea`
   display: flex;
-  width: 1015px;
+  width: 96.2%;
   height: 300px;
   padding: 10px 15px;
   border-radius: 4px;
@@ -175,12 +176,16 @@ const Section = styled.div`
   flex-direction: column;
   border-radius: 20px;
   border: 2px solid var(--line, rgba(0, 0, 0, 0.10));
+  width: 90%;
 `;
 const Wrapper = styled.div`
   width: 1120px;
   gap: 35px;
   display: flex;
   flex-direction: column;
+  @media(max-width: 1220px) {
+    width: 90%;
+  }
 `;
 const Container = styled.div`
   padding-bottom: 180px;

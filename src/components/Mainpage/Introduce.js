@@ -10,7 +10,7 @@ const Introduce = ({scRef}) => {
         <TempContainer>
           <div>
             <Title data-aos={"fade-up"}>
-              저희는 <Point size={'35px'} weight={'600'}>선생님</Point>분들을 위해 생각합니다
+              저희는 <Point size={'35'} weight={'600'}>선생님</Point>분들을 위해 생각합니다
             </Title>
             <Blank num={'4vh'}/>
             <Contents>
@@ -31,7 +31,7 @@ const Introduce = ({scRef}) => {
                 현재 저희 교직원분들에 대한 처우는 참담하다는 것이 비춰집니다<br/><br/>
               </div>
 
-              <IntroducePoint data-aos={"fade-up"}>그리하여 저희는 <Point size={'25px'} weight={'600'}>생각</Point>합니다</IntroducePoint><Blank num={'1.5vh'}/>
+              <IntroducePoint data-aos={"fade-up"}>그리하여 저희는 <Point size={'25'} weight={'600'}>생각</Point>합니다</IntroducePoint><Blank num={'1.5vh'}/>
               <div data-aos={"fade-up"}>
                 이렇게 다양한 관심이 쏟아지는 순간<br/>
                 차마 말하지 못하였던 참담한 현실에 대해 이야기하여<br/>
@@ -51,6 +51,10 @@ const News = styled.img`
   height: 542px;
   flex-shrink: 0;
   border-radius: 5px;
+  @media(max-width: 1080px) {
+    height: 430px;
+    width: 242px;
+  }
 `;
 const Blank = styled.div`
   width: 0;
@@ -62,6 +66,10 @@ const TempContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  @media(max-width: 800px) {
+    flex-direction: column;
+    gap: 20px;
+  }
 `;
 const IntroducePoint = styled.div`
   color: var(--text-title, #2C231E);
@@ -70,5 +78,8 @@ const IntroducePoint = styled.div`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  @media(max-width: 1080px) {
+    font-size: 22px;
+  }
 `;
 export default Introduce;

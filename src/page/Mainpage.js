@@ -9,7 +9,7 @@ const Mainpage = () => {
   function gotoScroll() {
     if(ref !== null) {
       const { offsetTop } = ref.current;
-      window.scrollTo({ behavior: "smooth", top: offsetTop});
+      window.scrollTo({ behavior: "smooth", top: offsetTop - 50});
     }
   }
   return (
