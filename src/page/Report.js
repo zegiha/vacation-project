@@ -16,13 +16,67 @@ const Report = () => {
           <Title>언론 제보로 더욱 알리기</Title>
           <Box>
             <Item>
-              <div>
-                {/*<MbcLogo/>*/}
+              <Top>
+                <MbcLogo src={mbcLogo}/>
                 <Line/>
-              </div>
-              <Text>
-                <SubTitle></SubTitle>
-              </Text>
+              </Top>
+              <Texts>
+                <GoToPage href={'https://news.imbc.com/more/report/'} target={'_blank'}>
+                  <SubTitle>홈페이지</SubTitle>
+                  https://news.imbc.com/<br/>
+                  more/report/
+                </GoToPage>
+                <Text>
+                  <SubTitle>이메일</SubTitle>
+                  mbcjebo@mbc.co.kr
+                </Text>
+                <Text>
+                  <SubTitle>전화번호</SubTitle>
+                  02-784-4000
+                </Text>
+              </Texts>
+            </Item>
+            <Item>
+              <Top>
+                <SbsLogo src={sbsLogo}/>
+                <Line/>
+              </Top>
+              <Texts>
+                <GoToPage href={'https://news.sbs.co.kr/news/inform.do'} target={'_blank'}>
+                  <SubTitle>홈페이지</SubTitle>
+                  https://news.sbs.co.kr/<br/>
+                  news/inform.do
+                </GoToPage>
+                <Text>
+                  <SubTitle>이메일</SubTitle>
+                  sbs8news@sbs.co.kr
+                </Text>
+                <Text>
+                  <SubTitle>전화번호</SubTitle>
+                  02-2113-6000
+                </Text>
+              </Texts>
+            </Item>
+            <Item>
+              <Top>
+                <KbsLogo src={kbsLogo}/>
+                <Line/>
+              </Top>
+              <Texts>
+                <GoToPage href={'https://news.imbc.com/more/report/'} target={'_blank'}>
+                  <SubTitle>홈페이지</SubTitle>
+                  https://news.kbs.co.kr/report/<br/>
+                  reportWrite.do
+                </GoToPage>
+                <Text>
+                  <SubTitle>이메일</SubTitle>
+                  kbs1234@kbs.co.kr
+                </Text>
+                <Text>
+                  <SubTitle>전화번호</SubTitle>
+                  02-781-1234, 4444
+                </Text>
+              </Texts>
             </Item>
           </Box>
         </Wrapper>
@@ -32,18 +86,69 @@ const Report = () => {
   );
 };
 
-const SubTitle = styled.div`
-
+const KbsLogo = styled.img`
+  width: 201px;
+  height: 64px;
+  margin-bottom: 28px;
 `;
-const Text = styled.div`
+const SbsLogo = styled.img`
+  width: 134px;
+  height: 51px;
+  margin-bottom: 40px;
+`;
+const GoToPage = styled.a`
   padding: 10px 15px;
-  margin-bottom: 20px;
   color: var(--text-contents, #524437);
   font-family: Pretendard;
   font-size: 22px;
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  max-width: 436px;
+  width: max-content;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: all 0.3s;
+
+  &:hover {
+    background: #ececec;
+  }
+`;
+const Texts = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1.5vh;
+`;
+const Top = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+;
+`;
+const MbcLogo = styled.img`
+  width: 178px;
+  height: 51px;
+  margin-bottom: 41px;
+`;
+const SubTitle = styled.div`
+  color: var(--text-contents, #524437);
+  font-family: Pretendard;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+`;
+const Text = styled.div`
+  padding: 10px 15px;
+  color: var(--text-contents, #524437);
+  font-family: Pretendard;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  max-width: 436px;
+  width: max-content;
 `;
 const Line = styled.div`
   width: 436px;
@@ -53,7 +158,8 @@ const Line = styled.div`
 const Item = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 100px;
+  align-items: center;
+  gap: 5vh;
   width: 436px;
 `;
 const Box = styled.div`
@@ -61,8 +167,7 @@ const Box = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  gap: 5vw;
+  gap: 3vw;
 `;
 const Wrapper = styled.div`
   display: flex;
@@ -70,12 +175,14 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 1508px;
+  gap: 70px;
 `;
 const Container = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 110px;
+  margin-bottom: 180px;
 `;
 export default Report;

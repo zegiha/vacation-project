@@ -3,6 +3,7 @@ import styled from "styled-components";
 import Header from "../components/Header";
 import {Title} from "../atoms/Atomic";
 import Footer from "../components/Footer";
+import {Link} from "react-router-dom";
 
 let message = [
   {
@@ -45,11 +46,11 @@ const Hear = () => {
           <Box data-aos={"fade-up"}>
             {message.map((n, i) => {
               return(
-                <Item key={i}>
+                <Item key={i} to={'/'}>
                   {
                     n.bool ?
                       <WithPic>
-                        <Picture>{n.pic}</Picture>
+                        <Picture>{n.file}</Picture>
                         <TextContainer>
                           <Name>{n.name}</Name>
                           <Contents bool={true}>{n.contents}</Contents>
@@ -110,9 +111,10 @@ const TextContainer = styled.div`
   width: auto;
   height: 65px;
 `;
-const Item = styled.div`
+const Item = styled(Link)`
   width: 300px;
   height: 250px;
+  text-decoration: none;
 `;
 const Picture = styled.div`
   width: auto;
@@ -137,7 +139,6 @@ const Box = styled.div`
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: auto;
   gap: 50px;
   max-width: 1120px;
   width: 100%;
