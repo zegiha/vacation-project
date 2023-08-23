@@ -39,7 +39,7 @@ let message = [
 const Hear = () => {
   return (
     <>
-      <Header/>
+      <Header isNotHome={true}/>
       <Container>
         <Wrapper>
           <Title data-aos={"fade-up"}>다른 선생님분들의 이야기</Title>
@@ -120,6 +120,7 @@ const Picture = styled.div`
   width: auto;
   height: 170px;
   background: gray;
+  color: red;
 `;
 const Box = styled.div`
   border-radius: 20px;

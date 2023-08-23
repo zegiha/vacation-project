@@ -9,7 +9,7 @@ const Tell = () => {
   const [name, setName] = useState('');
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [fileName, setFileName] = useState(null);
+  const [fileName, setFileName] = useState('');
 
   const saveName = event => {
     setName(event.target.value);
@@ -30,27 +30,27 @@ const Tell = () => {
 
   return (
     <>
-      <Header/>
+      <Header isNotHome={true}/>
       <Container>
         <Wrapper>
           <Title data-aos={"fade-up"}>선생님의 이야기를 들려주세요</Title>
           <Section data-aos={"fade-up"}>
             <Titles>
               <Contents>이름</Contents>
-              <TitleInput type={'text'} placeholder={'익명도 가능해요!'} onChange={saveName} value={name}/>
+              <TitleInput type={'text'} placeholder={'익명도 가능해요!'} onChange={saveName} defaultValue={name}/>
             </Titles>
             <Titles>
               <Contents>제목</Contents>
-              <TitleInput type={'text'} placeholder={'제목을 입력해주세요!'} onChange={saveTitle} value={title}/>
+              <TitleInput type={'text'} placeholder={'제목을 입력해주세요!'} onChange={saveTitle} defaultValue={title}/>
             </Titles>
             <File>
               <FileLabel htmlFor='FileAdd'><Contents>첨부 파일 추가</Contents></FileLabel>
-              <FileInput value={fileName}/>
+              <FileInput defaultValue={fileName}/>
               <FileAdd accept="image/*, video/*" type="file" multiple={true} id={'FileAdd'} onChange={(e) => setFileName(fileName + '   ' +e.target.files[0].name)}/>
             </File>
             <ContentsBox>
               <Contents>내용</Contents>
-              <Textarea placeholder={'내용을 적어주세요!'} onChange={saveContent} value={content}/>
+              <Textarea placeholder={'내용을 적어주세요!'} onChange={saveContent} defaultValue={content}/>
             </ContentsBox>
             <ButtonContainer>
               <Submit onClick={writing} to={'/hear'}>글 올리기</Submit>

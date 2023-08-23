@@ -34,6 +34,10 @@ const Bottom = styled.button`
   font-size: 20px;
   font-family: Pretendard;
   font-weight: 400;
+  transition: all 0.2s;
+  &:hover{
+    transform: scale(1.15);
+  }
 `
 const Point = styled.span`
   background: var(--text-point, linear-gradient(180deg, #84FF9F 0%, #3F0 100%));

@@ -14,7 +14,7 @@ const Mainpage = () => {
   }
   return (
     <>
-      <Header/>
+      <Header isNotHome={false}/>
       <Cover sc={gotoScroll}/>
       <Introduce scRef={ref}/>
       <Footer/>

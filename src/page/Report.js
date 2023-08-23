@@ -10,11 +10,11 @@ import kbsLogo from "../assets/Report/kbsLogo.svg"
 const Report = () => {
   return (
     <>
-      <Header/>
+      <Header isNotHome={true}/>
       <Container>
         <Wrapper>
-          <Title>언론 제보로 더욱 알리기</Title>
-          <Box>
+          <Title data-aos={"fade-up"}>언론 제보로 더욱 알리기</Title>
+          <Box data-aos={"fade-up"}>
             <Item>
               <Top>
                 <MbcLogo src={mbcLogo}/>
@@ -184,5 +184,6 @@ const Container = styled.div`
   align-items: center;
   margin-top: 110px;
   margin-bottom: 180px;
+  height: 70vh;
 `;
 export default Report;
