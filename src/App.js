@@ -6,6 +6,7 @@ import Mainpage from "./page/Mainpage";
 import Hear from "./page/Hear";
 import Tell from "./page/Tell";
 import Report from "./page/Report";
+import Details from "./page/Details";
 
 function App() {
   useEffect(() => {
@@ -18,6 +19,7 @@ function App() {
         <Route path={"/tell"} element={<Tell/>}/>
         <Route path={"/hear"} element={<Hear/>}/>
         <Route path={"/report"} element={<Report/>}/>
+        <Route path={'/details/:id'} element={<Details/>}/>
       </Routes>
     </BrowserRouter>
   );

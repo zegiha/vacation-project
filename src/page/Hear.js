@@ -46,7 +46,7 @@ const Hear = () => {
           <Box data-aos={"fade-up"}>
             {message.map((n, i) => {
               return(
-                <Item key={i} to={'/'}>
+                <Item key={i} to={`/details/:${i}`} state={{message}}>
                   {
                     n.bool ?
                       <WithPic>
@@ -115,9 +115,15 @@ const Item = styled(Link)`
   width: 300px;
   height: 250px;
   text-decoration: none;
+  transition: 0.2s;
+
+  &:hover {
+    scale: 1.05;
+  }
 `;
 const Picture = styled.div`
-  width: auto;
+  max-width: 300px;
+  width: 1000px;
   height: 170px;
   background: gray;
   color: red;
