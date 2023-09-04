@@ -3,10 +3,23 @@ import Header from "../components/Header";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import {Title} from "../atoms/Atomic";
+import {QueryClient, QueryClientProvider, useQuery} from "react-query";
+import axios from 'axios';
 
+const getBoard = async () => {
+  const {data} = (await axios.get('http://localhost:8081/api/v1/board')
+      .then((res) => {
+
+        console.log(JSON.parse(res.data).title)
+      })).data.title;
+
+  console.log("sdf" + data)
+  return data;
+}
 const Details = () => {
-  const location = useLocation();
-  const message = location.state.message;
+
+  const message = getBoard;
+  //const queryClient = new QueryClient();
   console.log(message)
 
   return (
@@ -15,13 +28,13 @@ const Details = () => {
       <Container data-aos={'fade-up'}>
         <Wrapper>
           <TitleAndName>
-            <Title>너무 힘들어요</Title>
+            <Title>{message.title}</Title>
             <UserName>익명</UserName>
+            <TestBtn>서버 불러오기 버튼</TestBtn>
           </TitleAndName>
           <Divider/>
           <Contents>
-            안녕하세요 저는 어디에 근무하는 이서율 입니다<br/>
-            힘드네요
+
           </Contents>
           <Divider/>
         </Wrapper>
@@ -50,6 +63,13 @@ const UserName = styled.div`
   font-family: 'Pretendard';
   font-size: 24px;
   font-weight: 500;
+`;
+const TestBtn = styled.button`
+    width: 100px;
+    height: 100px;
+    background: red;
+    color: white;
+    onclick: ${getBoard()}
 `;
 const TitleAndName = styled.div`
   width: 100%;
