@@ -23,7 +23,7 @@ const Tell = () => {
     setContent(event.target.value);
     console.log(content)
   }
-  
+
   function writing() {
     console.log(name, title, content, fileName);
   }
