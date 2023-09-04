@@ -9,10 +9,8 @@ import axios from 'axios';
 const getBoard = async () => {
   const {data} = (await axios.get('http://localhost:8081/api/v1/board')
       .then((res) => {
-
         console.log(JSON.parse(res.data).title)
-      })).data.title;
-
+      }));
   console.log("sdf" + data)
   return data;
 }
