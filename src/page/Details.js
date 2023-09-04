@@ -1,45 +1,56 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "../components/Header";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import {Title} from "../atoms/Atomic";
-import {QueryClient, QueryClientProvider, useQuery} from "react-query";
+import {useQuery} from "react-query";
 import axios from 'axios';
 
-const getBoard = async () => {
-  const {data} = (await axios.get('http://localhost:8081/api/v1/board')
-      .then((res) => {
-        console.log(JSON.parse(res.data).title)
-      }));
-  console.log("sdf" + data)
-  return data;
-}
+
+
+// eslint-disable-next-line react-hooks/rules-of-hooks
 const Details = () => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [data, setData] = useState(null);
 
-  const message = getBoard;
-  //const queryClient = new QueryClient();
-  console.log(message)
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    useEffect(() => {
+        // Axios를 사용하여 데이터를 가져옵니다.
+        axios.get('http://localhost:8081/api/v1/board')
+            .then(response => {
+                // 성공적으로 데이터를 가져오면 상태에 저장합니다.
+                console.log(response.data)
+                setData(response);
+            })
+            .catch(error => {
+                // 오류가 발생하면 오류를 처리합니다.
+                console.error('데이터를 가져오는 중 오류 발생:', error);
+            });
+    }, []);
 
-  return (
-    <>
-      <Header isNotHome={true}/>
-      <Container data-aos={'fade-up'}>
-        <Wrapper>
-          <TitleAndName>
-            <Title>{message.title}</Title>
-            <UserName>익명</UserName>
-            <TestBtn>서버 불러오기 버튼</TestBtn>
-          </TitleAndName>
-          <Divider/>
-          <Contents>
 
-          </Contents>
-          <Divider/>
-        </Wrapper>
-      </Container>
-    </>
-  );
-};
+    if (data) return (
+        <>
+            <Header isNotHome={true}/>
+            <Container data-aos={'fade-up'}>
+                <Wrapper>
+                    {
+                        data.data.map((item, index) => (
+                            <div key={index}>
+                                <Title>{item.title}</Title>
+                                <Contents>{item.contents}</Contents>
+                                <UserName>{item.title}</UserName>
+                                <Divider/>asd<Divider/>
+                                <TitleAndName>asd</TitleAndName>
+                            </div>
+                        ))
+                    }
+                </Wrapper>
+            </Container>
+        </>
+    );
+}
+
 
 const Contents = styled.div`
   width: 700px;
@@ -67,7 +78,6 @@ const TestBtn = styled.button`
     height: 100px;
     background: red;
     color: white;
-    onclick: ${getBoard()}
 `;
 const TitleAndName = styled.div`
   width: 100%;

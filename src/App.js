@@ -6,6 +6,7 @@ import Mainpage from "./page/Mainpage";
 import Hear from "./page/Hear";
 import Tell from "./page/Tell";
 import Report from "./page/Report";
+import fetchData from "./page/Details";
 import Details from "./page/Details";
 
 function App() {
