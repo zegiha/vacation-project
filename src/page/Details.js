@@ -16,7 +16,7 @@ const Details = () => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useEffect(() => {
         // Axios를 사용하여 데이터를 가져옵니다.
-        axios.get('http://localhost:8081/api/v1/board')
+        axios.get('http://13.124.212.11:8081/api/v1/board')
             .then(response => {
                 // 성공적으로 데이터를 가져오면 상태에 저장합니다.
                 console.log(response.data)
