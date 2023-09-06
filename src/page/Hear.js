@@ -53,13 +53,13 @@ const Hear = () => {
                         <Picture>{n.file}</Picture>
                         <TextContainer>
                           <Name>{n.name}</Name>
-                          <Contents bool={true}>{n.contents}</Contents>
+                          <Contents contentsBool={true}>{n.contents}</Contents>
                         </TextContainer>
                       </WithPic>:
                       <WithoutPic>
                         <TextContainer>
                           <Name>{n.name}</Name>
-                          <Contents bool={false}>{n.contents}</Contents>
+                          <Contents contentsBool={false}>{n.contents}</Contents>
                         </TextContainer>
                       </WithoutPic>
                   }
@@ -92,7 +92,7 @@ const Contents = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  height: ${(props) => props.bool ? '40px' : '224px'};
+  height: ${(props) => props.contentsBool ? '40px' : '224px'};
   overflow: hidden;
 `;
 

@@ -6,36 +6,26 @@ import {Title} from "../atoms/Atomic";
 import {useQuery} from "react-query";
 import axios from 'axios';
 
+const getNoticeInfo = async () => {
+  console.log('시발');
+  const { data } = await axios.post('13.124.212.11:8081/api/v1/board');
+  console.log('시발');
+  return data;
+}
 
-
-// eslint-disable-next-line react-hooks/rules-of-hooks
 const Details = () => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [data, setData] = useState(null);
+  // const noticeInfo = useQuery('noticeInfoKey', getNoticeInfo);
+  const noticeInfo = {string: '나는 문어'};
+  getNoticeInfo();
 
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    useEffect(() => {
-        // Axios를 사용하여 데이터를 가져옵니다.
-        axios.get('http://13.124.212.11:8081/api/v1/board')
-            .then(response => {
-                // 성공적으로 데이터를 가져오면 상태에 저장합니다.
-                console.log(response.data)
-                setData(response);
-            })
-            .catch(error => {
-                // 오류가 발생하면 오류를 처리합니다.
-                console.error('데이터를 가져오는 중 오류 발생:', error);
-            });
-    }, []);
-
-
-    if (data) return (
+    if (noticeInfo) return (
         <>
+          {console.log(noticeInfo)}
             <Header isNotHome={true}/>
             <Container data-aos={'fade-up'}>
                 <Wrapper>
                     {
-                        data.data.map((item, index) => (
+                      noticeInfo.map((item, index) => (
                             <div key={index}>
                                 <Title>{item.title}</Title>
                                 <Contents>{item.contents}</Contents>
