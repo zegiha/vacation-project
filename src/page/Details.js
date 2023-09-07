@@ -9,31 +9,58 @@ import { getNoticeInfo } from "../apis/getNoticeInfo";
 
 
 const Details = () => {
-  const {data, isLoading} = useQuery(['noticeInfoKey'], getNoticeInfo);
-    if (!isLoading) return (
-        <>
-          {console.log(data.data)}
-            <Header isNotHome={true}/>
-            <Container data-aos={'fade-up'}>
-                <Wrapper>
-                    {
-                      data.data.map((item, index) => (
-                            <div key={index}>
-                                <Title>{item.title}</Title>
-                                <Contents>{item.contents}</Contents>
-                                <UserName>{item.title}</UserName>
-                                <Divider/>asd<Divider/>
-                                <TitleAndName>asd</TitleAndName>
-                            </div>
-                        ))
-                    }
-                </Wrapper>
-            </Container>
-        </>
+  const {data, isLoading, isError, error} = useQuery(['noticeInfoKey'], getNoticeInfo);
+
+    if(isError) console.error(error);
+    else if (!isLoading) return (
+      <>
+        <Header isNotHome={true}/>
+        <Container data-aos={'fade-up'}>
+          <Wrapper>
+            {
+              data.data.map((item, index) => (
+                <>
+                  {console.log(item)}
+                  <TitleAndName key={index}>
+                    <Title>{item.title}</Title>
+                    <UserName>{item.username}</UserName>
+                  </TitleAndName>
+                  <Divider/>
+                  <Contents>{item.contents}</Contents>
+                  {
+                    item.uploadImageList.length > 0 ?
+                      <>
+                        <Divider/>
+                        <ImgContainer>
+                          {item.uploadImageList.map((img, i) => (
+                            <Img src={img.uploadFilename} key={i}/>
+                          ))}
+                        </ImgContainer>
+
+                      </> : <></>
+                  }
+                </>
+
+              ))
+            }
+          </Wrapper>
+        </Container>
+      </>
     );
 }
 
-
+const Img = styled.img`
+  max-width: 100%;
+  width: max-content;
+`;
+const ImgContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+`;
 const Contents = styled.div`
   width: 700px;
   color: var(--text-contents, #524437);
@@ -54,12 +81,6 @@ const UserName = styled.div`
   font-family: 'Pretendard';
   font-size: 24px;
   font-weight: 500;
-`;
-const TestBtn = styled.button`
-    width: 100px;
-    height: 100px;
-    background: red;
-    color: white;
 `;
 const TitleAndName = styled.div`
   width: 100%;

@@ -24,6 +24,10 @@ const Tell = () => {
     console.log(content)
   }
 
+  const savePass = e => {
+    console.log('졸립니다')
+  }
+
   function writing() {
     console.log(name, title, content, fileName);
   }
@@ -50,7 +54,11 @@ const Tell = () => {
             </File>
             <ContentsBox>
               <Contents>내용</Contents>
-              <Textarea placeholder={'내용을 적어주세요!'} onChange={saveContent} defaultValue={content}/>
+              <Textarea placeholder={'내용을 적어주세요!'} onChange={saveContent} defaultValue={content} height={'300px'}/>
+            </ContentsBox>
+            <ContentsBox>
+              <Contents>비밀번호</Contents>
+              <Textarea placeholder={'비밀번호를 적어주세요!'} onChange={savePass} defaultValue={content} height={'24px'}/>
             </ContentsBox>
             <ButtonContainer>
               <Submit onClick={writing} to={'/hear'}>글 올리기</Submit>
@@ -124,7 +132,7 @@ const ButtonContainer = styled.div`
 const Textarea = styled.textarea`
   display: flex;
   width: 96.2%;
-  height: 300px;
+  height: ${(props) => props.height};
   padding: 10px 15px;
   border-radius: 4px;
   border: 2px solid var(--line, rgba(0, 0, 0, 0.10));

@@ -4,62 +4,36 @@ import Header from "../components/Header";
 import {Title} from "../atoms/Atomic";
 import Footer from "../components/Footer";
 import {Link} from "react-router-dom";
-
-let message = [
-  {
-    bool : true,
-    name : '이서율',
-    title: 'title',
-    file : 'pic',
-    contents : '힘들다',
-  },
-  {
-    bool : true,
-    name : '이서율',
-    title: 'title',
-    file : 'pic',
-    contents : '힘들다',
-  },
-  {
-    bool : true,
-    name : '이서율',
-    title: 'title',
-    file : 'pic',
-    contents : '힘들다',
-  },
-  {
-    bool : false,
-    title: 'title',
-    name : '이서율',
-    file : 'pic',
-    contents : '힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 힘들다 ',
-  },
-];
+import {useQuery} from "react-query";
+import {getNoticeInfo} from "../apis/getNoticeInfo";
 
 const Hear = () => {
-  return (
+  const { data, isError, isLoading, error } = useQuery(['noticeInfoKey'], getNoticeInfo);
+
+  if(isError) console.error(error);
+  else if(!isLoading)return (
     <>
       <Header isNotHome={true}/>
       <Container>
         <Wrapper>
           <Title data-aos={"fade-up"}>다른 선생님분들의 이야기</Title>
           <Box data-aos={"fade-up"}>
-            {message.map((n, i) => {
+            {data.data.map((n, i) => {
               return(
-                <Item key={i} to={`/details/:${i}`} state={{message}}>
+                <Item key={i} to={`/details/:${i}`}>
                   {
-                    n.bool ?
+                    n.uploadImageList.length > 0?
                       <WithPic>
-                        <Picture>{n.file}</Picture>
+                        <Picture src={n.uploadImageList[0].uploadFilename}/>
                         <TextContainer>
-                          <Name>{n.name}</Name>
-                          <Contents contentsBool={true}>{n.contents}</Contents>
+                          <ItemTitle>{n.title}</ItemTitle>
+                          <Username contentsBool={true}>{n.username}</Username>
                         </TextContainer>
                       </WithPic>:
                       <WithoutPic>
                         <TextContainer>
-                          <Name>{n.name}</Name>
-                          <Contents contentsBool={false}>{n.contents}</Contents>
+                          <ItemTitle>{n.title}</ItemTitle>
+                          <Username contentsBool={false}>{n.username}</Username>
                         </TextContainer>
                       </WithoutPic>
                   }
@@ -85,9 +59,8 @@ const WithPic = styled.div`
   width: 300px;
   height: 250px;
 `;
-const Contents = styled.div`
+const Username = styled.div`
   color: var(--text-contents, #524437);
-  font-family: 'Pretendard';
   font-size: 19px;
   font-style: normal;
   font-weight: 500;
@@ -96,9 +69,8 @@ const Contents = styled.div`
   overflow: hidden;
 `;
 
-const Name = styled.div`
+const ItemTitle = styled.div`
   color: var(--text-title);
-  font-family: 'Pretendard';
   font-size: 22px;
   font-style: normal;
   font-weight: 500;
@@ -121,12 +93,12 @@ const Item = styled(Link)`
     scale: 1.05;
   }
 `;
-const Picture = styled.div`
+const Picture = styled.img`
   max-width: 300px;
   width: 1000px;
   height: 170px;
-  background: gray;
-  color: red;
+  border-radius: 3px;
+  border: 1.5px solid #ffeadb;
 `;
 const Box = styled.div`
   border-radius: 20px;

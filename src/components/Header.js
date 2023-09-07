@@ -30,42 +30,9 @@ const Header = (props) => {
         </HeaderWrapper>
       </HeaderContainer>
     </>
-    // <HeaderContainer navBar={nav}>
-    //   <Desktop>
-    //     <HeaderWrapper>
-    //       <TextButton navBar={nav} to={'/'}><Left src={Logo}/></TextButton>
-    //       <Right>
-    //         <TextButton navBar={nav} to={'/'}>홈</TextButton>
-    //         <TextButton navBar={nav} to={'/tell'}>이야기 하기</TextButton>
-    //         <TextButton navBar={nav} to={'/hear'}>이야기 듣기</TextButton>
-    //         <TextButton navBar={nav} to={'/report'}>더욱 알리기</TextButton>
-    //       </Right>
-    //     </HeaderWrapper>
-    //   </Desktop>
-    //   <Mobile>
-    //     <HeaderWrapper>
-    //       <TextButton navBar={nav} to={'/'}><Left src={Logo}/></TextButton>
-    //       <TextButton navBar={nav} onClick={() => {console.log('사랑해')}}><ThreeLineImg src={nav ? ThreeLineBlack : ThreeLineWhite}/></TextButton>
-    //     </HeaderWrapper>
-    //   </Mobile>
-    // </HeaderContainer>
   );
 };
 
-const ThreeLineImg = styled.img`
-  
-`;
-const Mobile = styled.div`
-  display: none;
-  @media(max-width: 730px) {
-    display: block;
-  }
-`;
-const Desktop = styled.div`
-  @media(max-width: 730px){
-    display: none;
-  }
-`;
 const TextButton = styled(Link)`
   color: ${(props) => (props.navBar ? "var(--text-contents, #524437)" : "#f5f5f5")};
   font-family: 'Pretendard', sans-serif;
