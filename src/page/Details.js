@@ -5,16 +5,14 @@ import styled from "styled-components";
 import {Title} from "../atoms/Atomic";
 import {useQuery} from "react-query";
 import axios from 'axios';
-
-const getNoticeInfo = async () => {
-  return await axios.get('http://13.124.212.11:8081/api/v1/board');
-}
+import { getNoticeInfo } from "../apis/getNoticeInfo";
 
 
 const Details = () => {
   const {data, isLoading} = useQuery(['noticeInfoKey'], getNoticeInfo);
     if (!isLoading) return (
         <>
+          {console.log(data.data)}
             <Header isNotHome={true}/>
             <Container data-aos={'fade-up'}>
                 <Wrapper>
