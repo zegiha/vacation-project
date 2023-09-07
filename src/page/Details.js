@@ -7,25 +7,19 @@ import {useQuery} from "react-query";
 import axios from 'axios';
 
 const getNoticeInfo = async () => {
-  console.log('시발');
-  const { data } = await axios.post('13.124.212.11:8081/api/v1/board');
-  console.log('시발');
-  return data;
+  return await axios.get('http://13.124.212.11:8081/api/v1/board');
 }
 
-const Details = () => {
-  // const noticeInfo = useQuery('noticeInfoKey', getNoticeInfo);
-  const noticeInfo = {string: '나는 문어'};
-  getNoticeInfo();
 
-    if (noticeInfo) return (
+const Details = () => {
+  const {data, isLoading} = useQuery(['noticeInfoKey'], getNoticeInfo);
+    if (!isLoading) return (
         <>
-          {console.log(noticeInfo)}
             <Header isNotHome={true}/>
             <Container data-aos={'fade-up'}>
                 <Wrapper>
                     {
-                      noticeInfo.map((item, index) => (
+                      data.data.map((item, index) => (
                             <div key={index}>
                                 <Title>{item.title}</Title>
                                 <Contents>{item.contents}</Contents>
