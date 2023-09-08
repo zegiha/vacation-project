@@ -11,6 +11,11 @@ const Hear = () => {
   const { data, isError, isLoading, error } = useQuery(['noticeInfoKey'], getNoticeInfo);
 
   if(isError) console.error(error);
+  else if(isLoading) return (
+    <>
+      <Title>Loading</Title>
+    </>
+  )
   else if(!isLoading)return (
     <>
       <Header isNotHome={true}/>
