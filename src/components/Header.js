@@ -2,11 +2,11 @@ import React, {useState, useEffect} from 'react';
 import styled from "styled-components";
 import Logo from "../assets/Mainpage/logo.svg"
 import { Link } from 'react-router-dom';
-import ThreeLineBlack from '../assets/Details/threeLineBlack.svg'
-import ThreeLineWhite from '../assets/Details/threeLineWhite.svg'
+import OpenImg from '../assets/Header/open.svg'
 
 const Header = (props) => {
   const [nav, setNav] = useState(props.isNotHome);
+  const [sideBar, setSideBar] = useState(false);
 
   useEffect(() => {
     if(typeof window !== "undefined" && !props.isNotHome) {
@@ -18,21 +18,54 @@ const Header = (props) => {
 
   return (
     <>
-      <HeaderContainer navBar={nav}>
-        <HeaderWrapper>
-          <TextButton navBar={nav} to={'/'}><Left src={Logo}/></TextButton>
-          <Right>
-            <TextButton navBar={nav} to={'/'}>홈</TextButton>
-            <TextButton navBar={nav} to={'/tell'}>이야기 하기</TextButton>
-            <TextButton navBar={nav} to={'/hear'}>이야기 듣기</TextButton>
-            <TextButton navBar={nav} to={'/report'}>더욱 알리기</TextButton>
-          </Right>
-        </HeaderWrapper>
-      </HeaderContainer>
+      <Desktop>
+        <HeaderContainer navBar={nav}>
+          <HeaderWrapper>
+            <TextButton navBar={nav} to={'/'}><Left src={Logo}/></TextButton>
+            <Right>
+              <TextButton navBar={nav} to={'/'}>홈</TextButton>
+              <TextButton navBar={nav} to={'/tell'}>이야기 하기</TextButton>
+              <TextButton navBar={nav} to={'/hear'}>이야기 듣기</TextButton>
+              <TextButton navBar={nav} to={'/report'}>더욱 알리기</TextButton>
+            </Right>
+          </HeaderWrapper>
+        </HeaderContainer>
+      </Desktop>
+      <Mobile>
+        <HeaderContainer navBar={nav}>
+          <HeaderWrapper>
+            <TextButton navBar={nav} to={'/'}><Left src={Logo}/></TextButton>
+            {
+              sideBar?
+                <SideButton navBar={nav}></SideButton>:
+                <SideButton navBar={nav}><SideButtonImg src={OpenImg} alt="open image"/></SideButton>
+            }
+          </HeaderWrapper>
+        </HeaderContainer>
+      </Mobile>
     </>
+
   );
 };
 
+const SideButtonImg = styled.img`
+  filter: ${(props) => (props.navBar ? "var(--text-title, #2C231E)" : "#f5f5f5")};
+  width: max-content;
+  height: max-content;
+`;
+const SideButton = styled.div`
+  padding: 10px 15px;
+  color: ${(props) => (props.navBar ? "var(--text-title, #2C231E)" : "#f5f5f5")};
+`;
+const Mobile = styled.div`
+  display: none;
+  z-index: 9;
+  @media(max-width: 730px) {display: block}
+`;
+const Desktop = styled.div`
+  z-index: 9;
+  @media(max-width: 730px) {display: none}
+`;
 const TextButton = styled(Link)`
   color: ${(props) => (props.navBar ? "var(--text-contents, #524437)" : "#f5f5f5")};
   font-family: 'Pretendard', sans-serif;
@@ -68,7 +101,7 @@ const HeaderContainer = styled.div`
   margin: 0 auto;
   background-color: ${(props) => (props.navBar ? "rgba(255, 255, 255, 0.8)" : "transparent")};
   border-bottom: 1.5px solid ${(props) => (props.navBar ? "rgba(0, 0, 0, 0.2)" : "rgba(0, 0, 0, 0)")};
-  z-index: 100;
+  z-index: 10;
   transition-property: background-color, border-bottom-color;
   transition: 0.3s ease-in-out;
   backdrop-filter: ${(props) => (props.navBar ? "blur(10px)" : "transparent")};

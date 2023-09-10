@@ -35,6 +35,7 @@ export const Contents = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+  width: max-content;
   @media(max-width: 1080px) {
     font-size: 20px;
   }

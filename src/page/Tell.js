@@ -2,35 +2,35 @@ import {React, useState} from 'react';
 import Header from "../components/Header";
 import styled from "styled-components";
 import {Contents, Title} from "../atoms/Atomic";
-import {Link} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
+import { useMutation } from "@tanstack/react-query";
+import { postNewNotice } from "../apis/postNewNotice";
+import UserNameAndTitleTell from "../components/Tell/UserNameAndTitleTell";
+import FileTell from "../components/Tell/FileTell";
+import ContentsAndPasswordTell from "../components/Tell/ContentsAndPasswordTell";
 
 const Tell = () => {
-  const [name, setName] = useState('');
+  const [userName, setUserName] = useState('');
   const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [fileName, setFileName] = useState('');
+  const [contents, setContents] = useState('');
+  const [imgSrc, setImgSrc] = useState([]);
+  const [files, setFiles] = useState([]);
+  const [password, setPassword] = useState('');
 
-  const saveName = event => {
-    setName(event.target.value);
-    console.log(name)
-  }
-  const saveTitle = event => {
-    setTitle(event.target.value);
-    console.log(title)
-  }
-  const saveContent = event => {
-    setContent(event.target.value);
-    console.log(content)
-  }
+  let navigate = useNavigate();
 
-  const savePass = e => {
-    console.log('졸립니다')
-  }
-
-  function writing() {
-    console.log(name, title, content, fileName);
-  }
+  const posting = useMutation(
+    {
+      mutationFn: (input) => postNewNotice(input),
+      onSuccess: async () => {
+        navigate('/hear');
+      },
+      onError: (error) => {
+        console.error(error);
+      }
+    }
+  )
 
   return (
     <>
@@ -39,29 +39,26 @@ const Tell = () => {
         <Wrapper>
           <Title data-aos={"fade-up"}>선생님의 이야기를 들려주세요</Title>
           <Section data-aos={"fade-up"}>
-            <Titles>
-              <Contents>이름</Contents>
-              <TitleInput type={'text'} placeholder={'익명도 가능해요!'} onChange={saveName} defaultValue={name}/>
-            </Titles>
-            <Titles>
-              <Contents>제목</Contents>
-              <TitleInput type={'text'} placeholder={'제목을 입력해주세요!'} onChange={saveTitle} defaultValue={title}/>
-            </Titles>
-            <File>
-              <FileLabel htmlFor='FileAdd'><Contents>첨부 파일 추가</Contents></FileLabel>
-              <FileInput defaultValue={fileName}/>
-              <FileAdd accept="image/*, video/*" type="file" multiple={true} id={'FileAdd'} onChange={(e) => setFileName(fileName + '   ' +e.target.files[0].name)}/>
-            </File>
-            <ContentsBox>
-              <Contents>내용</Contents>
-              <Textarea placeholder={'내용을 적어주세요!'} onChange={saveContent} defaultValue={content} height={'300px'}/>
-            </ContentsBox>
-            <ContentsBox>
-              <Contents>비밀번호</Contents>
-              <Textarea placeholder={'비밀번호를 적어주세요!'} onChange={savePass} defaultValue={content} height={'24px'}/>
-            </ContentsBox>
+            <UserNameAndTitleTell
+              setUserName={setUserName}
+              userName={userName}
+              setTitle={setTitle}
+              title={title}
+            />
+            <FileTell
+              imgSrc={imgSrc}
+              setImgSrc={setImgSrc}
+              files={files}
+              setFiles={setFiles}
+            />
+            <ContentsAndPasswordTell
+              setContents={setContents}
+              contents={contents}
+              setPassword={setPassword}
+              password={password}
+            />
             <ButtonContainer>
-              <Submit onClick={writing} to={'/hear'}>글 올리기</Submit>
+              <Submit onClick={() => posting.mutate({password, title, contents, userName, files})}>글 올리기</Submit>
             </ButtonContainer>
           </Section>
         </Wrapper>
@@ -71,40 +68,7 @@ const Tell = () => {
   );
 };
 
-const File = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
-const FileInput = styled.input`
-  display: inline-block;
-  height: 40px;
-  padding: 0 10px;
-  vertical-align: middle;
-  border-radius: 4px;
-  border: 2px solid var(--line, rgba(0, 0, 0, 0.10));
-  width: 80.5%;
-  color: var(--text-contents);
-  &:focus{
-    border: 2px solid var(--line, rgba(0, 0, 0, 0.10));
-    outline: none;
-  }
-`;
-const FileLabel = styled.label`
-  border-radius: 4px;
-  border: 2px solid var(--line, rgba(0, 0, 0, 0.10));
-  background: none;
-  display: flex;
-  width: 10%;
-  padding: 10px 15px;
-  width: max-content;
-  transition: all 0.3s;
-  &:hover {
-    border: 2px solid var(--line, rgba(0, 0, 0, 0.30));
-    transform: scale(1.02);
-  }
-`;
-const Submit = styled(Link)`
+const Submit = styled.div`
   color: #FFF;
   font-family: Pretendard;
   font-size: 19px;
@@ -122,60 +86,13 @@ const Submit = styled(Link)`
   &:hover {
     background: #ee7316;
     transform: scale(1.02);
+    cursor: pointer;
   }
 `;
 const ButtonContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: end;
-`;
-const Textarea = styled.textarea`
-  display: flex;
-  width: 96.2%;
-  height: ${(props) => props.height};
-  padding: 10px 15px;
-  border-radius: 4px;
-  border: 2px solid var(--line, rgba(0, 0, 0, 0.10));
-  color: var(--text-contents, #524437);
-  font-family: Pretendard;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-  resize: none;
-  outline: none;
-  transition: all 0.3s;
-  &:focus{
-    border: 2px solid var(--line, rgba(0, 0, 0, 0.30));
-    outline: none;
-  }
-`;
-const ContentsBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-`;
-const FileAdd = styled.input`
-  display: none;
-`;
-const TitleInput = styled.input`
-  min-width: 160px;
-  height: 23px;
-  border-radius: 4px;
-  border: 2px solid var(--line, rgba(0, 0, 0, 0.10));
-  padding: 10px 15px;
-  font-size: 20px;
-  color: var(--text-contents);
-  transition: all 0.3s;
-  &:focus{
-    border: 2px solid var(--line, rgba(0, 0, 0, 0.30));
-    outline: none;
-  }
-`;
-const Titles = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 15px;
 `;
 const Section = styled.div`
   display: flex;

@@ -1,54 +1,102 @@
-import React, {useEffect, useState} from 'react';
+import React, { useState } from 'react';
 import Header from "../components/Header";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
-import {Title} from "../atoms/Atomic";
-import {useQuery} from "react-query";
-import axios from 'axios';
-import { getNoticeInfo } from "../apis/getNoticeInfo";
-
+import { Title } from "../atoms/Atomic";
+import Footer from "../components/Footer";
+import DelModal from "../components/Details/DelModal";
+import { Link } from "react-router-dom";
 
 const Details = () => {
-  const {data, isLoading, isError, error} = useQuery(['noticeInfoKey'], getNoticeInfo);
+  const location = useLocation();
+  const { noticeData, index } = location.state;
+  const [noticeDel, setNoticeDel] = useState(false);
 
-    if(isError) console.error(error);
-    else if (!isLoading) return (
-      <>
-        <Header isNotHome={true}/>
-        <Container data-aos={'fade-up'}>
-          <Wrapper>
-            {
-              data.data.map((item, index) => (
-                <>
-                  {console.log(item)}
-                  <TitleAndName key={index}>
-                    <Title>{item.title}</Title>
-                    <UserName>{item.username}</UserName>
-                  </TitleAndName>
-                  <Divider/>
-                  <Contents>{item.contents}</Contents>
-                  {
-                    item.uploadImageList.length > 0 ?
-                      <>
-                        <Divider/>
-                        <ImgContainer>
-                          {item.uploadImageList.map((img, i) => (
-                            <Img src={img.uploadFilename} key={i}/>
-                          ))}
-                        </ImgContainer>
+  function noticeDelChange () {
+    setNoticeDel(!noticeDel);
+  }
 
-                      </> : <></>
-                  }
-                </>
-
-              ))
-            }
-          </Wrapper>
-        </Container>
-      </>
+  return (
+    <>
+      <Header isNotHome={true}/>
+      <Container data-aos={'fade-up'}>
+        <Wrapper>
+          <TitleAndName>
+            <Title>{noticeData.title}</Title>
+            <UserName>{noticeData.username}</UserName>
+          </TitleAndName>
+          <Divider/>
+          <Contents>{noticeData.contents}</Contents>
+          {
+            noticeData.uploadImageList.length > 0 ?
+              <>
+                <Divider/>
+                <ImgContainer>
+                  {noticeData.uploadImageList.map((img, i) => {
+                    return (<Img src={img.uploadFilename} key={i}/>)
+                  })}
+                </ImgContainer>
+              </> : <></>
+          }<Divider/>
+          <Left>
+            <EditNotice to={`/details/:${index}/edit`} state={{noticeData: noticeData}}>게시물 수정</EditNotice>
+            <DelNotice onClick={ () => noticeDelChange()}>게시물 삭제</DelNotice>
+          </Left>
+        </Wrapper>
+      </Container>
+      <Footer/>
+      {noticeDel ? <DelModal noticePassword={noticeData.editPassword} noticeTitle={noticeData.title} noticeContents={noticeData.contents} noticeBoolChange={noticeDelChange}/> : <></>}
+    </>
     );
 }
 
+const EditNotice = styled(Link)`
+  display: flex;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  border: 2px solid rgba(0, 0, 0, 0.10);
+  gap: 10px;
+  color: var(--text-title, #2C231E);
+  text-decoration: none;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  transition: all 0.2s;
+  &:hover {
+    background: rgba(0, 0, 0, 0.07);
+    transform: scale(1.05);
+  }
+`;
+const DelNotice = styled.div`
+  display: flex;
+  padding: 11px 10px 11px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  border-radius: 3px;
+  background: #FF5151;
+  color: #FFF;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  transition: all 0.2s;
+  &:hover {
+    background: #FF2E2E;
+    transform: scale(1.05);
+    cursor: pointer;
+  }
+`;
+const Left = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  gap: 10px;
+`;
 const Img = styled.img`
   max-width: 100%;
   width: max-content;
@@ -93,6 +141,7 @@ const Container = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 110px;
+  margin-bottom: 50px;
 `;
 const Wrapper = styled.div`
   width: 700px;
@@ -100,5 +149,6 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 35px;
+  min-height: 100vh;
 `;
 export default Details;

@@ -36,6 +36,7 @@ const Bottom = styled.button`
   font-weight: 400;
   transition: all 0.2s;
   &:hover{
+    cursor: pointer;
     transform: scale(1.15);
   }
 `

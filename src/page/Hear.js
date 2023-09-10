@@ -4,7 +4,7 @@ import Header from "../components/Header";
 import {Title} from "../atoms/Atomic";
 import Footer from "../components/Footer";
 import {Link} from "react-router-dom";
-import {useQuery} from "react-query";
+import {useQuery} from "@tanstack/react-query";
 import {getNoticeInfo} from "../apis/getNoticeInfo";
 
 const Hear = () => {
@@ -25,20 +25,21 @@ const Hear = () => {
           <Box data-aos={"fade-up"}>
             {data.data.map((n, i) => {
               return(
-                <Item key={i} to={`/details/:${i}`}>
+                <Item key={i} to={`/details/:${i}`} state={{noticeData: n, index: i}}>
                   {
                     n.uploadImageList.length > 0?
                       <WithPic>
                         <Picture src={n.uploadImageList[0].uploadFilename}/>
                         <TextContainer>
                           <ItemTitle>{n.title}</ItemTitle>
-                          <Username contentsBool={true}>{n.username}</Username>
+                          <Username>{n.username}</Username>
                         </TextContainer>
                       </WithPic>:
                       <WithoutPic>
+                        <Text>{n.contents}</Text>
                         <TextContainer>
                           <ItemTitle>{n.title}</ItemTitle>
-                          <Username contentsBool={false}>{n.username}</Username>
+                          <Username>{n.username}</Username>
                         </TextContainer>
                       </WithoutPic>
                   }
@@ -53,9 +54,24 @@ const Hear = () => {
   );
 };
 
+const Text = styled.div`
+  max-width: 300px;
+  width: 1000px;
+  height: 170px;
+  text-decoration: none;
+  color: var(--text-contents, #524437);
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  overflow: hidden;
+`;
 const WithoutPic = styled.div`
   width: 300px;
   height: 250px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 `;
 const WithPic = styled.div`
   display: flex;
@@ -70,7 +86,7 @@ const Username = styled.div`
   font-style: normal;
   font-weight: 500;
   line-height: normal;
-  height: ${(props) => props.contentsBool ? '40px' : '224px'};
+  height: 40px;
   overflow: hidden;
 `;
 
@@ -127,6 +143,7 @@ const Wrapper = styled.div`
   max-width: 1120px;
   width: 100%;
   margin: 0 10000px;
+  min-height: 100vh;
 `;
 const Container = styled.div`
   display: flex;

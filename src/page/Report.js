@@ -161,12 +161,17 @@ const Item = styled.div`
   align-items: center;
   gap: 5vh;
   width: 436px;
+  padding: 40px 20px;
+  border: 2px solid var(--line, rgba(0, 0, 0, 0.10));
+  border-radius: 10px;
 `;
 const Box = styled.div`
   width: 100%;
+  height: max-content;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: 3vw;
 `;
 const Wrapper = styled.div`
@@ -174,7 +179,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 1508px;
+  width: 1800px;
   gap: 70px;
 `;
 const Container = styled.div`
@@ -184,6 +189,6 @@ const Container = styled.div`
   align-items: center;
   margin-top: 110px;
   margin-bottom: 180px;
-  height: 70vh;
+  min-height: 70vh;
 `;
 export default Report;
