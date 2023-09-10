@@ -15,12 +15,12 @@ const EditModal = ({noticeData, isModalChange, edit, delFiles, files}) => {
       mutationFn: (input) => PostEditNotice(input),
       onSuccess: async () => {
         alert('수정되었습니다!');
-        navigate(-1);
+        navigate(-2);
       },
       onError: (error) => {
         alert('문제가 발생하였습니다\n다시 시도하여 주십시오');
         console.error(error);
-        navigate(-1);
+        navigate(-2);
       }
     }
   )
