@@ -2,17 +2,22 @@ import React from 'react';
 import {Contents} from "../../atoms/Atomic";
 import styled from "styled-components";
 
-const TitleEditNotice = ({setUserName, userName, setTitle,title}) => {
+const TitleEditNotice = ({setTitle, title, warn}) => {
   return (
     <>
       <Titles>
         <Contents>제목</Contents>
         <TitleInput type={'text'} placeholder={'제목을 입력해주세요!'} onChange={e => setTitle(e.target.value)} defaultValue={title}/>
+        {warn.title ? <Warn>필수항목입니다!</Warn> : <></>}
       </Titles>
     </>
   );
 };
 
+const Warn = styled.div`
+  color: #FF2E2E;
+  font-size: 17px;
+`;
 const TitleInput = styled.input`
   min-width: 160px;
   height: 23px;

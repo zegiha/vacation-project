@@ -10,6 +10,11 @@ import {getNoticeInfo} from "../apis/getNoticeInfo";
 const Hear = () => {
   const { data, isError, isLoading, error } = useQuery(['noticeInfoKey'], getNoticeInfo);
 
+  function checkVidoe(fileEditor) {
+    if(fileEditor === '.mp4' || fileEditor === '.mov') return true;
+    else return false;
+  }
+
   if(isError) console.error(error);
   else if(isLoading) return (
     <>
@@ -29,7 +34,10 @@ const Hear = () => {
                   {
                     n.uploadImageList.length > 0?
                       <WithPic>
-                        <Picture src={n.uploadImageList[0].uploadFilename}/>
+                        {checkVidoe(n.uploadImageList[0].uploadFilename.substr(n.uploadImageList[0].uploadFilename.length -4)) ?
+                          <Video muted>
+                            <source src={n.uploadImageList[0].uploadFilename} type={'video/mp4'}/>
+                          </Video> : <Picture src={n.uploadImageList[0].uploadFilename}/>}
                         <TextContainer>
                           <ItemTitle>{n.title}</ItemTitle>
                           <Username>{n.username}</Username>
@@ -54,6 +62,13 @@ const Hear = () => {
   );
 };
 
+const Video = styled.video`
+  max-width: 300px;
+  width: 1000px;
+  height: 170px;
+  border-radius: 5px;
+  background-color: red;
+`;
 const Text = styled.div`
   max-width: 300px;
   width: 1000px;
@@ -118,7 +133,7 @@ const Picture = styled.img`
   max-width: 300px;
   width: 1000px;
   height: 170px;
-  border-radius: 3px;
+  border-radius: 5px;
   border: 1.5px solid #ffeadb;
 `;
 const Box = styled.div`

@@ -12,6 +12,12 @@ const Details = () => {
   const { noticeData, index } = location.state;
   const [noticeDel, setNoticeDel] = useState(false);
 
+  function checkVidoe(fileEditor) {
+    console.log(fileEditor);
+    if(fileEditor === '.mp4' || fileEditor === '.mov') return true;
+    else return false;
+  }
+
   function noticeDelChange () {
     setNoticeDel(!noticeDel);
   }
@@ -33,7 +39,16 @@ const Details = () => {
                 <Divider/>
                 <ImgContainer>
                   {noticeData.uploadImageList.map((img, i) => {
-                    return (<Img src={img.uploadFilename} key={i}/>)
+                    return(
+                      checkVidoe(img.uploadFilename.substr(img.uploadFilename.length -4)) ? (
+                        <Video controls key={i}>
+                          <source src={img.uploadFilename} type={'video/mp4'}/>
+                        </Video>
+                      ):
+                      (
+                        <Img src={img.uploadFilename} key={i}/>
+                      )
+                    )
                   })}
                 </ImgContainer>
               </> : <></>
@@ -50,6 +65,10 @@ const Details = () => {
     );
 }
 
+const Video = styled.video`
+  max-width: 100%;
+  width: max-content;
+`;
 const EditNotice = styled(Link)`
   display: flex;
   padding: 10px;

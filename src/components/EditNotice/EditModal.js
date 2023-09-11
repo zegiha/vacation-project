@@ -27,38 +27,44 @@ const EditModal = ({noticeData, isModalChange, edit, delFiles, files}) => {
 
   return (
     <>
-      <ModalContainer>
-        <ModalBackground onClick={() => isModalChange}/>
-        <Modal>
-          <Title>게시물 수정하기</Title>
-          <ContentsBox>
-            <Contents>비밀번호</Contents>
-            <Textarea placeholder={'비밀번호를 적어주세요!'} onChange={(e) => {
-              setPassIn(e.target.value);
-            }} height={'24px'}/>
-            {isCorrect ? <Correct>비밀번호가 일치하지 않아요!</Correct> : <></>}
-          </ContentsBox>
-          <Left>
-            <CancelNotice onClick={() => isModalChange()}>취소</CancelNotice>
-            <EditNotice onClick={() => {
-              if(passIn === noticeData.editPassword) {
-                setIsCorrect(false);
-                if(window.confirm("수정하시겠습니까?")) {
-                  PostingEditNotice.mutate({
-                    id: noticeData.id,
-                    title: noticeData.title,
-                    editTitle: edit.title,
-                    editContents: edit.contents,
-                    password: noticeData.editPassword,
-                    delFiles: delFiles,
-                    files: files
-                  })
-                }
-              } else setIsCorrect(true);
-            }}>게시물 수정</EditNotice>
-          </Left>
-        </Modal>
-      </ModalContainer>
+      {PostingEditNotice.isLoading ? (
+        <h2>Uploading Edit Things</h2>
+      ) : (
+        <>
+          <ModalContainer>
+            <ModalBackground onClick={() => isModalChange}/>
+            <Modal>
+              <Title>게시물 수정하기</Title>
+              <ContentsBox>
+                <Contents>비밀번호</Contents>
+                <Textarea placeholder={'비밀번호를 적어주세요!'} onChange={(e) => {
+                  setPassIn(e.target.value);
+                }} height={'24px'}/>
+                {isCorrect ? <Correct>비밀번호가 일치하지 않아요!</Correct> : <></>}
+              </ContentsBox>
+              <Left>
+                <CancelNotice onClick={() => isModalChange()}>취소</CancelNotice>
+                <EditNotice onClick={() => {
+                  if(passIn === noticeData.editPassword) {
+                    setIsCorrect(false);
+                    if(window.confirm("수정하시겠습니까?")) {
+                      PostingEditNotice.mutate({
+                        id: noticeData.id,
+                        title: noticeData.title,
+                        editTitle: edit.title,
+                        editContents: edit.contents,
+                        password: noticeData.editPassword,
+                        delFiles: delFiles,
+                        files: files
+                      })
+                    }
+                  } else setIsCorrect(true);
+                }}>게시물 수정</EditNotice>
+              </Left>
+            </Modal>
+          </ModalContainer>
+        </>
+      )}
     </>
   );
 };

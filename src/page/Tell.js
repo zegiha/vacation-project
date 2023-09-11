@@ -1,4 +1,4 @@
-import {React, useState} from 'react';
+import {React, useEffect, useState} from 'react';
 import Header from "../components/Header";
 import styled from "styled-components";
 import {Contents, Title} from "../atoms/Atomic";
@@ -18,12 +18,14 @@ const Tell = () => {
   const [files, setFiles] = useState([]);
   const [password, setPassword] = useState('');
 
-  let navigate = useNavigate();
+  const [warn, setWarn] = useState({
+    title: false,
+    contents: false,
+    userName: false,
+    password: false
+  });
 
-  function checkData() {
-    if(true) console.log('tlqkf')
-    posting.mutate({password, title, contents, userName, files}
-  }
+  let navigate = useNavigate();
 
   const posting = useMutation(
     {
@@ -37,38 +39,67 @@ const Tell = () => {
     }
   )
 
+  function submitClicked() {
+    setWarn({
+      title: title.length < 1,
+      password: password.length < 1,
+      userName: userName.length < 1,
+      contents: contents.length < 1,
+    });
+    if(!(title.length < 1 || password.length < 1 || userName.length < 1 || contents.length < 1)) {
+      posting.mutate({
+        password, userName, contents, title, files
+      })
+    }
+  }
+
+  useEffect(() => {
+    if(password.slice(-1) === '\n') {
+      setPassword(password.replace('\n', ''));
+      submitClicked();
+    }
+  }, [password])
+
   return (
     <>
-      <Header isNotHome={true}/>
-      <Container>
-        <Wrapper>
-          <Title data-aos={"fade-up"}>선생님의 이야기를 들려주세요</Title>
-          <Section data-aos={"fade-up"}>
-            <UserNameAndTitleTell
-              setUserName={setUserName}
-              userName={userName}
-              setTitle={setTitle}
-              title={title}
-            />
-            <FileTell
-              imgSrc={imgSrc}
-              setImgSrc={setImgSrc}
-              files={files}
-              setFiles={setFiles}
-            />
-            <ContentsAndPasswordTell
-              setContents={setContents}
-              contents={contents}
-              setPassword={setPassword}
-              password={password}
-            />
-            <ButtonContainer>
-              <Submit onClick={() => checkData}>글 올리기</Submit>
-            </ButtonContainer>
-          </Section>
-        </Wrapper>
-      </Container>
-      <Footer/>
+      {posting.isLoading ? (
+        <h2>Uploading</h2>
+      ):(
+        <>
+          <Header isNotHome={true}/>
+          <Container>
+            <Wrapper>
+              <Title data-aos={"fade-up"}>선생님의 이야기를 들려주세요</Title>
+              <Section data-aos={"fade-up"}>
+                <UserNameAndTitleTell
+                  setUserName={setUserName}
+                  userName={userName}
+                  setTitle={setTitle}
+                  title={title}
+                  warn={warn}
+                />
+                <FileTell
+                  imgSrc={imgSrc}
+                  setImgSrc={setImgSrc}
+                  files={files}
+                  setFiles={setFiles}
+                />
+                <ContentsAndPasswordTell
+                  setContents={setContents}
+                  contents={contents}
+                  setPassword={setPassword}
+                  password={password}
+                  warn={warn}
+                />
+                <ButtonContainer>
+                  <Submit onClick={() => submitClicked()}>글 올리기</Submit>
+                </ButtonContainer>
+              </Section>
+            </Wrapper>
+          </Container>
+          <Footer/>
+        </>
+      )}
     </>
   );
 };

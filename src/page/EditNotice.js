@@ -24,6 +24,12 @@ const EditNotice = () => {
   const [files, setFiles] = useState(noticeData.uploadImageList);
   const [delFiles, setDelFiles] = useState('');
 
+  const [warn, setWarn] = useState({
+    title: false,
+    contents: false,
+    userName: false,
+  });
+
   useEffect(() => {
     const copyImgSrc = (n) => {
       return new Promise((resolve) => {
@@ -45,9 +51,6 @@ const EditNotice = () => {
     fetchData();
   }, [noticeData])
 
-  function goBack() {
-    navigate(-1);
-  }
   function isModalChange() {
     setIsModal(!isModal)
   }
@@ -65,6 +68,7 @@ const EditNotice = () => {
               userName={userName}
               setTitle={setTitle}
               title={title}
+              warn={warn}
             />
             <FileEditNotice
               imgSrc={imgSrc}
@@ -77,10 +81,17 @@ const EditNotice = () => {
             <ContentsEditNotice
               setContents={setContents}
               contents={contents}
+              warn={warn}
             />
             <ButtonContainer>
-              {/*<CancelNotice onClick={() => //goBack()}>취소</CancelNotice>*/}
-              <Submit onClick={() => isModalChange()}>글 수정하기</Submit>
+              <Submit onClick={() => {
+                setWarn({
+                  title: title.length < 1,
+                  userName: userName.length < 1,
+                  contents: contents.length < 1,
+                });
+                if(!(title.length < 1 || userName.length < 1 || contents.length < 1)) isModalChange();
+              }}>글 수정하기</Submit>
             </ButtonContainer>
           </Section>
         </Wrapper>
