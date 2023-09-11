@@ -17,6 +17,13 @@ export const PostEditNotice = async(input) => {
 
   const formData = new FormData();
 
+  console.log('id: ' + input.id);
+  console.log('title: ' + input.title);
+  console.log('editTitle: ' + input.editTitle);
+  console.log('editContents: ' + input.editContents);
+  console.log('password: ' + input.password);
+  console.log('delFiles: ' + input.delFiles);
+
   formData.append('targetBoardID', input.id);
   formData.append('title', input.title);
   formData.append('edit_title', input.editTitle);

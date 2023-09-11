@@ -1,8 +1,11 @@
 import React from 'react';
 import {Contents} from "../../atoms/Atomic";
 import styled from "styled-components";
+import {useState} from "react";
 
 const FileTell = ({imgSrc, setImgSrc, files, setFiles}) => {
+  const [isFileEditor, setIsFileEditor] = useState(false);
+  const [isSameFile, setIsSameFile] = useState(false);
 
   function deleteExImg(index) {
     const copyImgSrc = [...imgSrc];
@@ -24,12 +27,27 @@ const FileTell = ({imgSrc, setImgSrc, files, setFiles}) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
-          for(const originalFile of files) if(originalFile.name === file.name){
-            isPass = 'already';
-            break;
+          for(const originalFile of files){
+            if(originalFile.name === file.name){
+              isPass = 'already';
+              setIsSameFile(true)
+              break;
+            }
           }
+
+          const fileEditor = file.name.substr(file.name.indexOf('.') + 1);
+          if(!(fileEditor === 'png' || fileEditor === 'jpg' || fileEditor === 'mp4' || fileEditor === 'mov' || fileEditor === 'jpeg')){
+            isPass = 'diffFile';
+            setIsFileEditor(true);
+          }
+
           if(isPass === 'already') resolve('already');
-          else resolve(reader.result);
+          else if(isPass === 'diffFile') resolve('diffFile');
+          else {
+            setIsFileEditor(false);
+            setIsSameFile(false);
+            resolve(reader.result);
+          }
         };
         reader.onerror = (error) => {
           reject(error);
@@ -43,7 +61,7 @@ const FileTell = ({imgSrc, setImgSrc, files, setFiles}) => {
       // 각 파일에 대해 readFile 함수를 호출하여 주소 값을 받아옴
       for (const file of fileList) {
         const imgSrcItem = await readFile(file);
-        if(imgSrcItem !== 'already') {
+        if(imgSrcItem !== 'already' && imgSrcItem !== 'diffFile') {
           imgSrcArray.push(imgSrcItem);
 
           // 이미지 주소 값을 업데이트
@@ -75,13 +93,27 @@ const FileTell = ({imgSrc, setImgSrc, files, setFiles}) => {
             })
           }
         </PictureContainer>
+        <WarnRight>
+          {isFileEditor ? <Warn>png, jpg, jpeg, mp4, mov 파일만 추가할 수 있어요!</Warn>:<></>}
+          {isSameFile ? <Warn>다른 파일만 추가할 수 있어요!</Warn>:<></>}
+        </WarnRight>
         <FileLabel htmlFor='FileAdd'><Contents>첨부 파일 추가</Contents></FileLabel>
       </FileContainer>
-      <FileAdd accept=".mp4, .png, .jpg, .mov" type="file" multiple={true} id={'FileAdd'} onChange={uploadFile}/>
+      <FileAdd accept=".mp4, .png, .jpg, .mov, .jpeg" type="file" multiple={true} id={'FileAdd'} onChange={uploadFile}/>
     </Container>
   );
 };
 
+const WarnRight = styled.div`
+  width: calc(100% - 30px);
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+`;
+const Warn = styled.div`
+  color: #FF2E2E;
+  font-size: 17px;
+`;
 const FileLabel = styled.label`
   border-radius: 4px;
   border: 2px solid var(--line, rgba(0, 0, 0, 0.10));

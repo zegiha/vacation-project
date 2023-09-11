@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import styled from "styled-components";
 import {Title} from "../atoms/Atomic";
 import Footer from "../components/Footer";
-import { useLocation } from "react-router-dom";
+import {Link, useLocation, useNavigate} from "react-router-dom";
 import TitleEditNotice from "../components/EditNotice/TitleEditNotice";
 import FileEditNotice from "../components/EditNotice/FileEditNotice";
 import ContentsEditNotice from "../components/EditNotice/ContentsEditNotice";
@@ -12,6 +12,8 @@ import EditModal from "../components/EditNotice/EditModal";
 const EditNotice = () => {
   const location = useLocation();
   const { noticeData } = location.state;
+
+  const navigate = useNavigate();
 
   const [isModal, setIsModal] = useState(false);
 
@@ -43,6 +45,9 @@ const EditNotice = () => {
     fetchData();
   }, [noticeData])
 
+  function goBack() {
+    navigate(-1);
+  }
   function isModalChange() {
     setIsModal(!isModal)
   }
@@ -74,6 +79,7 @@ const EditNotice = () => {
               contents={contents}
             />
             <ButtonContainer>
+              {/*<CancelNotice onClick={() => //goBack()}>취소</CancelNotice>*/}
               <Submit onClick={() => isModalChange()}>글 수정하기</Submit>
             </ButtonContainer>
           </Section>
@@ -94,6 +100,25 @@ const EditNotice = () => {
   );
 };
 
+const CancelNotice = styled(Link)`
+  display: flex;
+  padding: 10px 15px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 3px;
+  border: 2px solid rgba(0, 0, 0, 0.10);
+  gap: 10px;
+  color: var(--text-title, #2C231E);
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  transition: all 0.2s;
+  &:hover {
+    background: rgba(0, 0, 0, 0.07);
+    transform: scale(1.05);
+  }
+`;
 const Submit = styled.div`
   color: #FFF;
   font-family: 'Pretendard';
@@ -119,6 +144,7 @@ const ButtonContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: end;
+  gap: 10px;
 `;
 const Section = styled.div`
   display: flex;
