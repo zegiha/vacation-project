@@ -25,10 +25,10 @@ const FileTell = ({imgSrc, setImgSrc, files, setFiles}) => {
         reader.readAsDataURL(file);
         reader.onload = () => {
           for(const originalFile of files) if(originalFile.name === file.name){
-            isPass = true;
+            isPass = 'already';
             break;
           }
-          if(isPass) resolve('already');
+          if(isPass === 'already') resolve('already');
           else resolve(reader.result);
         };
         reader.onerror = (error) => {
@@ -77,7 +77,7 @@ const FileTell = ({imgSrc, setImgSrc, files, setFiles}) => {
         </PictureContainer>
         <FileLabel htmlFor='FileAdd'><Contents>첨부 파일 추가</Contents></FileLabel>
       </FileContainer>
-      <FileAdd accept="image/*, video/*" type="file" multiple={true} id={'FileAdd'} onChange={uploadFile}/>
+      <FileAdd accept=".mp4, .png, .jpg, .mov" type="file" multiple={true} id={'FileAdd'} onChange={uploadFile}/>
     </Container>
   );
 };

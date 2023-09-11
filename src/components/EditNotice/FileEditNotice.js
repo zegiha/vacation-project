@@ -83,7 +83,7 @@ const FileEditNotice = ({imgSrc, setImgSrc, files, setFiles, delFiles, setDelFil
         </PictureContainer>
         <FileLabel htmlFor='FileAdd'><Contents>첨부 파일 추가</Contents></FileLabel>
       </FileContainer>
-      <FileAdd accept="image/*, video/*" type="file" multiple={true} id={'FileAdd'} onChange={uploadFile}/>
+      <FileAdd accept=".mp4, .png, .jpg, .mov" type="file" multiple={true} id={'FileAdd'} onChange={uploadFile}/>
     </Container>
   );
 };
