@@ -20,6 +20,11 @@ const Tell = () => {
 
   let navigate = useNavigate();
 
+  function checkData() {
+    if(true) console.log('tlqkf')
+    posting.mutate({password, title, contents, userName, files}
+  }
+
   const posting = useMutation(
     {
       mutationFn: (input) => postNewNotice(input),
@@ -58,7 +63,7 @@ const Tell = () => {
               password={password}
             />
             <ButtonContainer>
-              <Submit onClick={() => posting.mutate({password, title, contents, userName, files})}>글 올리기</Submit>
+              <Submit onClick={() => checkData}>글 올리기</Submit>
             </ButtonContainer>
           </Section>
         </Wrapper>
