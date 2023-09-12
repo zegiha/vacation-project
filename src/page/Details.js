@@ -13,7 +13,6 @@ const Details = () => {
   const [noticeDel, setNoticeDel] = useState(false);
 
   function checkVidoe(fileEditor) {
-    console.log(fileEditor);
     if(fileEditor === '.mp4' || fileEditor === '.mov') return true;
     else return false;
   }
@@ -129,7 +128,8 @@ const ImgContainer = styled.div`
   gap: 50px;
 `;
 const Contents = styled.div`
-  width: 700px;
+  max-width: 700px;
+  width: 100%;
   color: var(--text-contents, #524437);
   font-family: 'Pretendard';
   font-size: 22px;
@@ -139,7 +139,8 @@ const Contents = styled.div`
   letter-spacing: 0.44px;
 `;
 const Divider = styled.div`
-  width: 700px;
+  width: 100%;
+  margin: 0 20px;
   height: 2px;
   background: rgba(0, 0, 0, 0.10);
 `;
@@ -163,7 +164,8 @@ const Container = styled.div`
   margin-bottom: 50px;
 `;
 const Wrapper = styled.div`
-  width: 700px;
+  max-width: 700px;
+  width: 95%;
   display: flex;
   flex-direction: column;
   align-items: center;

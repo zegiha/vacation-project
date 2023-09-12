@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {Title} from "../../atoms/Atomic";
 import styled from "styled-components";
 import { useMutation } from "@tanstack/react-query";
@@ -25,6 +25,22 @@ const DelModal = ({noticeBoolChange, noticePassword, noticeTitle, noticeContents
     }
   )
 
+  function delClicked() {
+    if(passIn.trim() === noticePassword.trim()) {
+      setIsCorrect(false);
+      if(window.confirm("정말로 삭제하시겠습니까?")) {
+        deleteNotice.mutate({noticePassword, noticeTitle, noticeContents});
+      }
+    } else setIsCorrect(true);
+  }
+
+  useEffect(() => {
+    if(passIn.slice(-1) === '\n') {
+      setPassIn(passIn.replace('\n', ''));
+      delClicked();
+    }
+  }, [passIn])
+
   return (
     <>
       <ModalContainer>
@@ -35,19 +51,12 @@ const DelModal = ({noticeBoolChange, noticePassword, noticeTitle, noticeContents
             <Contents>비밀번호</Contents>
             <Textarea placeholder={'비밀번호를 적어주세요!'} onChange={(e) => {
               setPassIn(e.target.value);
-            }} height={'24px'}/>
+            }} height={'24px'} value={passIn}/>
             {isCorrect ? <Correct >비밀번호가 일치하지 않아요!</Correct> : <></>}
           </ContentsBox>
           <Left>
             <EditNotice onClick={() => noticeBoolChange()}>취소</EditNotice>
-            <DelNotice onClick={() => {
-              if(passIn === noticePassword) {
-                setIsCorrect(false);
-                if(window.confirm("정말로 삭제하시겠습니까?")) {
-                  deleteNotice.mutate({noticePassword, noticeTitle, noticeContents});
-                }
-              } else setIsCorrect(true);
-            }}>게시물 삭제</DelNotice>
+            <DelNotice onClick={() => delClicked()}>게시물 삭제</DelNotice>
           </Left>
         </Modal>
       </ModalContainer>
