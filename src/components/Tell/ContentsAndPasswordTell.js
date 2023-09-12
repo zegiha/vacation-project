@@ -12,7 +12,7 @@ const ContentsAndPasswordTell = ({setContents, contents, setPassword, password, 
       </ContentsBox>
       <ContentsBox>
         <Contents>비밀번호</Contents>
-        <Textarea placeholder={'비밀번호를 적어주세요!'} onChange={e => setPassword(e.target.value)} defaultValue={password} height={'24px'} over={'hidden'}/>
+        <Textarea placeholder={'비밀번호를 적어주세요!'} onChange={e => setPassword(e.target.value)} value={password} height={'24px'} over={'hidden'}/>
         {warn.password ? <Warn>필수항목입니다!</Warn> : <></>}
       </ContentsBox>
     </>
