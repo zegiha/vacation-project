@@ -107,7 +107,6 @@ const Tell = () => {
 
 const Submit = styled.div`
   color: #FFF;
-  font-family: Pretendard;
   font-size: 19px;
   font-style: normal;
   font-weight: 500;
