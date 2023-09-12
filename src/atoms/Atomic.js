@@ -10,7 +10,8 @@ export const MainWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: start;
-  width: 1120px;
+  max-width: 1120px;
+  width: 100%;
   gap: ${(props) => props.gap};
   padding-bottom: 180px;
   padding-top: 180px;
@@ -38,6 +39,9 @@ export const Contents = styled.div`
   width: max-content;
   @media(max-width: 1080px) {
     font-size: 20px;
+  }
+  @media(max-width: 560px) {
+    width: 450px;
   }
 `;
 export const Point = styled.span`

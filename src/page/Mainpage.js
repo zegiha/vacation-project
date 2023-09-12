@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 import Cover from "../components/Mainpage/Cover";
 import Introduce from "../components/Mainpage/Introduce";
 import Footer from "../components/Footer";
@@ -9,7 +9,7 @@ const Mainpage = () => {
   function gotoScroll() {
     if(ref !== null) {
       const { offsetTop } = ref.current;
-      window.scrollTo({ behavior: "smooth", top: offsetTop - 50});
+      window.scrollTo({ behavior: "smooth", top: offsetTop - 100});
     }
   }
   return (

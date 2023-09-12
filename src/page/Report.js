@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from "styled-components";
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 import Footer from "../components/Footer";
 import {Title} from "../atoms/Atomic";
 import mbcLogo from "../assets/Report/mbcLogo.svg"

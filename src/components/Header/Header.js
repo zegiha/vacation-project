@@ -1,12 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import styled from "styled-components";
-import Logo from "../assets/Mainpage/logo.svg"
+import Logo from "../../assets/Mainpage/logo.svg"
 import { Link } from 'react-router-dom';
-import OpenImg from '../assets/Header/open.svg'
+import OpenImg from '../../assets/Header/open.svg'
+import CloseImg from '../../assets/Header/close.svg'
+import SideModal from "./SideModal";
 
 const Header = (props) => {
   const [nav, setNav] = useState(props.isNotHome);
   const [sideBar, setSideBar] = useState(false);
+  const headerRef = useRef(null);
 
   useEffect(() => {
     if(typeof window !== "undefined" && !props.isNotHome) {
@@ -14,10 +17,12 @@ const Header = (props) => {
         setNav(window.scrollY > 100 ? true : false);
       })
     }
+    window.addEventListener('resize', () => {
+      if(headerRef.current?.offsetWidth > 740) setSideBar(false);
+    })
   }, )
-
   return (
-    <>
+    <div ref={headerRef}>
       <Desktop>
         <HeaderContainer navBar={nav}>
           <HeaderWrapper>
@@ -37,34 +42,46 @@ const Header = (props) => {
             <TextButton navBar={nav} to={'/'}><Left src={Logo}/></TextButton>
             {
               sideBar?
-                <SideButton navBar={nav}></SideButton>:
-                <SideButton navBar={nav}><SideButtonImg src={OpenImg} alt="open image"/></SideButton>
+                <SideButton navBar={nav} onClick={() => setSideBar(!sideBar)}><SideButtonImg src={CloseImg} alt="open image"/></SideButton>:
+                <SideButton navBar={nav} onClick={() => setSideBar(!sideBar)}><SideButtonImg src={OpenImg} alt="open image"/></SideButton>
+            }
+            {
+              sideBar?
+                <SideModal setSideBar={setSideBar}/>:
+                <></>
             }
           </HeaderWrapper>
         </HeaderContainer>
       </Mobile>
-    </>
+    </div>
 
   );
 };
 
 const SideButtonImg = styled.img`
   filter: ${(props) => (props.navBar ? "var(--text-title, #2C231E)" : "#f5f5f5")};
-  width: max-content;
-  height: max-content;
+  width: 20px;
+  height: 20px;
 `;
 const SideButton = styled.div`
-  padding: 10px 15px;
+  z-index: 12;
+  padding: 8px;
   color: ${(props) => (props.navBar ? "var(--text-title, #2C231E)" : "#f5f5f5")};
+  border-radius: 5px;
+  transition: all 0.3s;
+  &:hover{
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.07);
+  }
 `;
 const Mobile = styled.div`
   display: none;
   z-index: 9;
-  @media(max-width: 730px) {display: block}
+  @media(max-width: 740px) {display: block}
 `;
 const Desktop = styled.div`
   z-index: 9;
-  @media(max-width: 730px) {display: none}
+  @media(max-width: 740px) {display: none}
 `;
 const TextButton = styled(Link)`
   color: ${(props) => (props.navBar ? "var(--text-contents, #524437)" : "#f5f5f5")};
@@ -108,9 +125,11 @@ const HeaderContainer = styled.div`
 `;
 const HeaderWrapper = styled.div`
   display: flex;
-  width: 1120px;
+  max-width: 1120px;
+  width: 100%;
   height: 60px;
   justify-content: space-between;
+  padding: 0 20px;
   align-items: center;
 `;
 export default Header;

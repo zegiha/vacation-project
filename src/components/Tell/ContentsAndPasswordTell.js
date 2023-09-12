@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {Contents} from "../../atoms/Atomic";
 import styled from "styled-components";
 

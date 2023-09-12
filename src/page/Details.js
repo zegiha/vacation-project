@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from "../components/Header";
+import Header from "../components/Header/Header";
 import { useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { Title } from "../atoms/Atomic";
@@ -165,7 +165,7 @@ const Container = styled.div`
 `;
 const Wrapper = styled.div`
   max-width: 700px;
-  width: 95%;
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
