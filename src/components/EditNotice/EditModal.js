@@ -47,6 +47,7 @@ const EditModal = ({noticeData, isModalChange, edit, delFiles, files}) => {
       setPassIn(passIn.replace('\n', ''));
       editClicked();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [passIn])
 
   return (

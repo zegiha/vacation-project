@@ -10,7 +10,10 @@ export const PostEditNotice = async(input) => {
   function findingAcceptArray(arr) {
     let result = [];
     arr.map((n, _) => {
-      if(n.name !== undefined) result.push(n);
+      if (n.name !== undefined){
+        result.push(n);
+      }
+      return null;
     })
     return result;
   }

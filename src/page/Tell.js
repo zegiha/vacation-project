@@ -1,7 +1,7 @@
 import {React, useEffect, useState} from 'react';
 import Header from "../components/Header/Header";
 import styled from "styled-components";
-import {Contents, Title} from "../atoms/Atomic";
+import {Title} from "../atoms/Atomic";
 import { useNavigate } from "react-router-dom";
 import Footer from "../components/Footer";
 import { useMutation } from "@tanstack/react-query";
@@ -58,6 +58,7 @@ const Tell = () => {
       setPassword(password.replace('\n', ''));
       submitClicked();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [password])
 
   return (

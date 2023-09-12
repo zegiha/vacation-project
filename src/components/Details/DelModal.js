@@ -39,6 +39,7 @@ const DelModal = ({noticeBoolChange, noticePassword, noticeTitle, noticeContents
       setPassIn(passIn.replace('\n', ''));
       delClicked();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [passIn])
 
   return (
