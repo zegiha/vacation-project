@@ -3,7 +3,7 @@ import Header from "../components/Header/Header";
 import styled from "styled-components";
 import {Title} from "../atoms/Atomic";
 import Footer from "../components/Footer";
-import {Link, useLocation} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import TitleEditNotice from "../components/EditNotice/TitleEditNotice";
 import FileEditNotice from "../components/EditNotice/FileEditNotice";
 import ContentsEditNotice from "../components/EditNotice/ContentsEditNotice";
