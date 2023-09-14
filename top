@@ -1,0 +1,197 @@
+[33mcommit 5e85a691d9f1fef3563936ca4c3a2dc8426a3124[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: zegiha <118225985+zegiha@users.noreply.github.com>
+Date:   Wed Sep 13 04:09:36 2023 +0900
+
+    change lang to korean
+
+[33mcommit aa14f1244a67b32a639a8b415863686b180eeda3[m
+Author: zegiha <118225985+zegiha@users.noreply.github.com>
+Date:   Wed Sep 13 04:05:02 2023 +0900
+
+    change main icons, change main name
+
+[33mcommit ccdbbe19dfff6f72744382c8ac0231894d0181a8[m
+Author: zegiha <118225985+zegiha@users.noreply.github.com>
+Date:   Wed Sep 13 01:41:11 2023 +0900
+
+    아 진짜 또 안되면 이정우 죽여버림
+
+[33mcommit fe941d25870b074f143e78cd91250c1064fd9e86[m
+Author: zegiha <118225985+zegiha@users.noreply.github.com>
+Date:   Wed Sep 13 01:35:57 2023 +0900
+
+    fix warnings
+
+[33mcommit 42575864e634e6c04b45724d205730dc7d2155a2[m
+Author: zegiha <118225985+zegiha@users.noreply.github.com>
+Date:   Wed Sep 13 01:30:12 2023 +0900
+
+    fix warnings
+
+[33mcommit bb5697d842e9ec479c016ae39d716eda3d78aaf2[m
+Author: zegiha <118225985+zegiha@users.noreply.github.com>
+Date:   Wed Sep 13 01:15:12 2023 +0900
+
+    the end
+
+[33mcommit c4fa9c33618a023c7710f712d6d5a915e571890b[m
+Author: zegiha <LeeSeoYul07081@gmail.com>
+Date:   Tue Sep 12 19:30:10 2023 +0900
+
+    make press enter, i must make 반응형
+
+[33mcommit d5c387258756607ca642feba3471e56144769dfd[m
+Author: zegiha <118225985+zegiha@users.noreply.github.com>
+Date:   Tue Sep 12 03:49:48 2023 +0900
+
+    fix video and picture, fix have to list when make new notice i must fix enter submit
+
+[33mcommit 38daeb98ffa0d591eba8f00d0aa8b4e6925f4e1c[m
+Author: zegiha <LeeSeoYul07081@gmail.com>
+Date:   Mon Sep 11 21:13:43 2023 +0900
+
+    commit
+
+[33mcommit 518f93b86b9623983260715329c42b9e114c8276[m
+Author: zegiha <LeeSeoYul07081@gmail.com>
+Date:   Mon Sep 11 20:24:58 2023 +0900
+
+    make fileEditor
+
+[33mcommit 01d4340017dfe0bf43ce35b8bc7203c0a081e54f[m
+Author: zegiha <LeeSeoYul07081@gmail.com>
+Date:   Mon Sep 11 15:52:36 2023 +0900
+
+    조commited by sung hoon
+
+[33mcommit 97a935c672fc018e7a41110fe9e6a89fb306ad31[m
+Author: zegiha <118225985+zegiha@users.noreply.github.com>
+Date:   Mon Sep 11 06:48:35 2023 +0900
+
+    commit message
+
+[33mcommit b5d27b324ecff55039744d8c15c5422683a8dd8a[m
+Author: zegiha <118225985+zegiha@users.noreply.github.com>
+Date:   Mon Sep 11 04:57:18 2023 +0900
+
+    connect with backend everything, fix height every page, make edit and delete, fix get file, make and fix details page, and some more
+
+[33mcommit 70dc6c5b0937bc1edb43a6612fbe27ccd295266f[m
+Author: zegiha <LeeSeoYul07081@gmail.com>
+Date:   Fri Sep 8 23:34:52 2023 +0900
+
+    commit message
+
+[33mcommit 30a016d0099c17fda0060a3ff65e873bec52e791[m
+Author: zegiha <118225985+zegiha@users.noreply.github.com>
+Date:   Fri Sep 8 00:53:32 2023 +0900
+
+    details and tell connect with backend
+
+[33mcommit 98922dcc6273b2ba34cae902ebaa36a794d45d02[m
+Author: zegiha <LeeSeoYul07081@gmail.com>
+Date:   Thu Sep 7 19:06:30 2023 +0900
+
+    idk
+
+[33mcommit f6661449f91ca3c456c7cfdf58ba7c688aedbec5[m
+Author: zegiha <LeeSeoYul07081@gmail.com>
+Date:   Thu Sep 7 18:30:38 2023 +0900
+
+    details connect with backend
+
+[33mcommit c3d8dee09ad8b3e759300dceef3d1d3139ba623f[m
+Author: zegiha <LeeSeoYul07081@gmail.com>
+Date:   Wed Sep 6 20:52:11 2023 +0900
+
+    connect with backend
+
+[33mcommit 21fe384f829652448a4669ee40cd4ef2aaba8a47[m
+Author: 조성훈 <23sunrin154@sunrint.hs.kr>
+Date:   Tue Sep 5 17:55:22 2023 +0900
+
+    Asda
+
+[33mcommit d73109a42015dc77ff9647a8f0f5b2f42553bd1f[m
+Author: 조성훈 <23sunrin154@sunrint.hs.kr>
+Date:   Mon Sep 4 20:14:44 2023 +0900
+
+    fix backend
+
+[33mcommit 53ed856929cc5ca831c2836ac2d500dbff23d3ef[m
+Author: 조성훈 <23sunrin154@sunrint.hs.kr>
+Date:   Mon Sep 4 18:31:08 2023 +0900
+
+    asd
+
+[33mcommit ae05e4187ff7426a7ae83edbf8864897d7fd9c90[m
+Author: 조성훈 <23sunrin154@sunrint.hs.kr>
+Date:   Mon Sep 4 18:25:44 2023 +0900
+
+    test
+
+[33mcommit b171cde1b6f22a830b0262730cc10fb03344ad13[m
+Author: zegiha <LeeSeoYul07081@gmail.com>
+Date:   Mon Sep 4 16:12:51 2023 +0900
+
+    for sunghoon
+
+[33mcommit e5fd7c466ee9ec9c680a7dddbcf09f4fd04483f4[m
+Author: zegiha <118225985+zegiha@users.noreply.github.com>
+Date:   Mon Sep 4 05:08:24 2023 +0900
+
+    headerFix
+
+[33mcommit 4579b23e45f16152333ea593862d7054e6608871[m
+Author: zegiha <118225985+zegiha@users.noreply.github.com>
+Date:   Mon Sep 4 02:47:06 2023 +0900
+
+    headerFix, Details, connectWithHearAndDetails
+
+[33mcommit 5eebc9a4880e99f4b708d2c99459290105205ba6[m
+Author: zegiha <118225985+zegiha@users.noreply.github.com>
+Date:   Wed Aug 23 19:24:24 2023 +0900
+
+    headerAni, headerLogoFix, mainPageButtonFix, reportAniFix
+
+[33mcommit 6f8ab5e10a73316aa9a0a66efa86f03d300846b4[m
+Author: zegiha <LeeSeoYul07081@gmail.com>
+Date:   Wed Aug 23 12:37:54 2023 +0900
+
+    commit
+
+[33mcommit 11f633cb7ddfbc317fc70cb2ee66711fbccff560[m
+Author: zegiha <118225985+zegiha@users.noreply.github.com>
+Date:   Tue Aug 22 04:10:26 2023 +0900
+
+    making report
+
+[33mcommit 6304c5df732a3b114832d2437b6233e65b90d874[m
+Author: zegiha <LeeSeoYul07081@gmail.com>
+Date:   Mon Aug 21 22:48:10 2023 +0900
+
+    commit
+
+[33mcommit 6eebfa1a65372e75cba17be1166501f2724e557d[m
+Author: zegiha <118225985+zegiha@users.noreply.github.com>
+Date:   Mon Aug 21 06:16:43 2023 +0900
+
+    commit
+
+[33mcommit 7c5d46ae169047e2da6a39030079b162dfe5e673[m
+Author: zegiha <118225985+zegiha@users.noreply.github.com>
+Date:   Sun Aug 20 18:44:18 2023 +0900
+
+    commitMessage
+
+[33mcommit 6e634fa3910a066a3c48fcbe07e274db8a5f65cd[m
+Author: zegiha <118225985+zegiha@users.noreply.github.com>
+Date:   Fri Aug 18 06:26:34 2023 +0900
+
+    commit meaasge
+
+[33mcommit 29b22ecdc3b6c04b094bd2a83a94fafd09921832[m
+Author: zegiha <118225985+zegiha@users.noreply.github.com>
+Date:   Thu Aug 17 23:54:00 2023 +0900
+
+    Initialize project using Create React App
