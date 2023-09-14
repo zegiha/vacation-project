@@ -137,7 +137,7 @@ const Section = styled.div`
   flex-direction: column;
   border-radius: 20px;
   border: 2px solid var(--line, rgba(0, 0, 0, 0.10));
-  width: 90%;
+  width: calc(100% - 70px);
 `;
 const Wrapper = styled.div`
   width: 1120px;

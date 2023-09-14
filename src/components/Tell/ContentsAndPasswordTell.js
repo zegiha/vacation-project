@@ -1,17 +1,16 @@
 import React from 'react';
-import {Contents} from "../../atoms/Atomic";
 import styled from "styled-components";
 
 const ContentsAndPasswordTell = ({setContents, contents, setPassword, password, warn}) => {
   return (
     <>
       <ContentsBox>
-        <Contents>내용</Contents>
+        <FileContents>내용</FileContents>
         <Textarea placeholder={'내용을 적어주세요!'} onChange={e => setContents(e.target.value)} defaultValue={contents} height={'300px'} over={'auto'}/>
         {warn.contents ? <Warn>필수항목입니다!</Warn> : <></>}
       </ContentsBox>
       <ContentsBox>
-        <Contents>비밀번호</Contents>
+        <FileContents>비밀번호</FileContents>
         <Textarea placeholder={'비밀번호를 적어주세요!'} onChange={e => setPassword(e.target.value)} value={password} height={'24px'} over={'hidden'}/>
         {warn.password ? <Warn>필수항목입니다!</Warn> : <></>}
       </ContentsBox>
@@ -19,6 +18,15 @@ const ContentsAndPasswordTell = ({setContents, contents, setPassword, password, 
   );
 };
 
+const FileContents = styled.div`
+  color: var(--text-contents, #524437);
+  font-family: 'Pretendard';
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  width: max-content;
+`;
 const Warn = styled.div`
   color: #FF2E2E;
   font-size: 17px;

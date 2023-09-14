@@ -44,23 +44,32 @@ const DelModal = ({noticeBoolChange, noticePassword, noticeTitle, noticeContents
 
   return (
     <>
-      <ModalContainer>
-        <ModalBackground onClick={() => noticeBoolChange()}/>
-        <Modal>
-          <Title>게시물 지우기</Title>
-          <ContentsBox>
-            <Contents>비밀번호</Contents>
-            <Textarea placeholder={'비밀번호를 적어주세요!'} onChange={(e) => {
-              setPassIn(e.target.value);
-            }} height={'24px'} value={passIn}/>
-            {isCorrect ? <Correct >비밀번호가 일치하지 않아요!</Correct> : <></>}
-          </ContentsBox>
-          <Left>
-            <EditNotice onClick={() => noticeBoolChange()}>취소</EditNotice>
-            <DelNotice onClick={() => delClicked()}>게시물 삭제</DelNotice>
-          </Left>
-        </Modal>
-      </ModalContainer>
+      {deleteNotice.isLoading ? (
+        <ModalContainer>
+          <ModalBackground/>
+          <Modal>
+            <h2>삭제하고 있어요!</h2>
+          </Modal>
+        </ModalContainer>
+      ):(
+        <ModalContainer>
+          <ModalBackground onClick={() => noticeBoolChange()}/>
+          <Modal>
+            <Title>게시물 지우기</Title>
+            <ContentsBox>
+              <Contents>비밀번호</Contents>
+              <Textarea placeholder={'비밀번호를 적어주세요!'} onChange={(e) => {
+                setPassIn(e.target.value);
+              }} height={'24px'} value={passIn}/>
+              {isCorrect ? <Correct >비밀번호가 일치하지 않아요!</Correct> : <></>}
+            </ContentsBox>
+            <Left>
+              <EditNotice onClick={() => noticeBoolChange()}>취소</EditNotice>
+              <DelNotice onClick={() => delClicked()}>게시물 삭제</DelNotice>
+            </Left>
+          </Modal>
+        </ModalContainer>
+      )}
     </>
   );
 };

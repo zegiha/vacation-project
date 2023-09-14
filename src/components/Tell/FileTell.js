@@ -1,5 +1,4 @@
 import React from 'react';
-import {Contents} from "../../atoms/Atomic";
 import styled from "styled-components";
 import {useState} from "react";
 
@@ -97,13 +96,22 @@ const FileTell = ({imgSrc, setImgSrc, files, setFiles}) => {
           {isFileEditor ? <Warn>png, jpg, jpeg, mp4, mov 파일만 추가할 수 있어요!</Warn>:<></>}
           {isSameFile ? <Warn>다른 파일만 추가할 수 있어요!</Warn>:<></>}
         </WarnRight>
-        <FileLabel htmlFor='FileAdd'><Contents>첨부 파일 추가</Contents></FileLabel>
+        <FileLabel htmlFor='FileAdd'><FileContents>첨부 파일 추가</FileContents></FileLabel>
       </FileContainer>
       <FileAdd accept=".mp4, .png, .jpg, .mov, .jpeg" type="file" multiple={true} id={'FileAdd'} onChange={uploadFile}/>
     </Container>
   );
 };
 
+const FileContents = styled.div`
+  color: var(--text-contents, #524437);
+  font-family: 'Pretendard';
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  width: max-content;
+`;
 const WarnRight = styled.div`
   width: calc(100% - 30px);
   display: flex;

@@ -53,7 +53,14 @@ const EditModal = ({noticeData, isModalChange, edit, delFiles, files}) => {
   return (
     <>
       {PostingEditNotice.isLoading ? (
-        <h2>Uploading Edit Things</h2>
+        <>
+          <ModalContainer>
+            <ModalBackground/>
+            <Modal>
+              <h2>수정하고 있어요!</h2>
+            </Modal>
+          </ModalContainer>
+        </>
       ) : (
         <>
           <ModalContainer>

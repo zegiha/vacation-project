@@ -53,9 +53,8 @@ const EditNotice = () => {
     setIsModal(!isModal)
   }
 
-  return (
+  return(
     <>
-
       <Header isNotHome={true}/>
       <Container>
         <Wrapper>
@@ -139,11 +138,11 @@ const ButtonContainer = styled.div`
 const Section = styled.div`
   display: flex;
   gap: 35px;
+  width: calc(100% - 70px);
   padding: 35px;
   flex-direction: column;
   border-radius: 20px;
   border: 2px solid var(--line, rgba(0, 0, 0, 0.10));
-  width: 90%;
 `;
 const Wrapper = styled.div`
   width: 1120px;
@@ -159,6 +158,7 @@ const Container = styled.div`
   padding-top: 110px;
   display: flex;
   justify-content: center;
+  align-items: center;
   width: 100%;
 `;
 export default EditNotice;
