@@ -21,6 +21,7 @@ const Header = (props) => {
       if(headerRef.current?.offsetWidth > 740) setSideBar(false);
     })
   }, )
+
   return (
     <div ref={headerRef}>
       <Desktop>
