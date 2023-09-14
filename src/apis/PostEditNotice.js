@@ -25,13 +25,12 @@ export const PostEditNotice = async(input) => {
   formData.append('deleteFileList', input.delFiles);
 
   const files = findingAcceptArray(input.files)
-  console.log(files);
 
   Array.from(files).forEach((el) => {
     formData.append("files", el);
   });
 
-  await axios.post('http://52.79.99.166:8081/api/v1/board/edit', formData, config)
+  await axios.post('https://coinpick365.com:8081/api/v1/board/edit', formData, config)
     .then(res => {console.log(`Complited!!\n${res}`)})
     .catch(error => {console.error(error)})
 }
