@@ -1,7 +1,20 @@
 import React from 'react';
 import styled from "styled-components";
 
-const ContentsAndPasswordTell = ({setContents, contents, setPassword, password, warn}) => {
+interface PropsTypes{
+    setContents: (contents: string) => void;
+    contents: string;
+    setPassword: (contents: string) => void;
+    password: string;
+    warn: {
+        title: boolean;
+        contents: boolean;
+        userName: boolean;
+        password: boolean;
+    }
+}
+
+const ContentsAndPasswordTell = ({setContents, contents, setPassword, password, warn}: PropsTypes) => {
   return (
     <>
       <ContentsBox>
@@ -31,7 +44,7 @@ const Warn = styled.div`
   color: #FF2E2E;
   font-size: 17px;
 `;
-const Textarea = styled.textarea`
+const Textarea = styled.textarea<{height: string; over: string}>`
   display: flex;
   width: calc(100% - 30px);
   height: ${(props) => props.height};

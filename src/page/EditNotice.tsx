@@ -11,14 +11,14 @@ import EditModal from "../components/EditNotice/EditModal";
 
 const EditNotice = () => {
   const location = useLocation();
-  const { noticeData } = location.state;
+  const { noticeData} = location.state;
 
   const [isModal, setIsModal] = useState(false);
 
   const [userName, setUserName] = useState(noticeData.username);
   const [title, setTitle] = useState(noticeData.title);
   const [contents, setContents] = useState(noticeData.contents);
-  const [imgSrc, setImgSrc] = useState([]);
+  const [imgSrc, setImgSrc] = useState<string[]>([]);
   const [files, setFiles] = useState(noticeData.uploadImageList);
   const [delFiles, setDelFiles] = useState('');
 
@@ -29,7 +29,7 @@ const EditNotice = () => {
   });
 
   useEffect(() => {
-    const copyImgSrc = (n) => {
+    const copyImgSrc = (n: any) => {
       return new Promise((resolve) => {
         resolve(n.uploadFilename);
       })
@@ -37,7 +37,7 @@ const EditNotice = () => {
     const fetchData = async () => {
       try{
         const imgSrcArray = await Promise.all(
-          noticeData.uploadImageList.map((n) => copyImgSrc(n))
+          noticeData.uploadImageList.map((n: any) => copyImgSrc(n))
         );
         setImgSrc(imgSrcArray);
 
@@ -67,14 +67,14 @@ const EditNotice = () => {
               title={title}
               warn={warn}
             />
-            <FileEditNotice
-              imgSrc={imgSrc}
-              setImgSrc={setImgSrc}
-              files={files}
-              setFiles={setFiles}
-              delFiles={delFiles}
-              setDelFiles={setDelFiles}
-            />
+            {/*<FileEditNotice*/}
+            {/*  imgSrc={imgSrc}*/}
+            {/*  setImgSrc={setImgSrc}*/}
+            {/*  files={files}*/}
+            {/*  setFiles={setFiles}*/}
+            {/*  delFiles={delFiles}*/}
+            {/*  setDelFiles={setDelFiles}*/}
+            {/*/>*/}
             <ContentsEditNotice
               setContents={setContents}
               contents={contents}

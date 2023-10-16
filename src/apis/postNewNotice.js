@@ -19,7 +19,7 @@ export const postNewNotice = async(input) => {
     formData.append("files", el);
   });
 
-  await axios.post('https://coinpick365.com:8081/api/v1/board', formData, config)
+  await axios.post('https://josunghun.life/api/v1/board', formData, config)
   .then(res => {console.log("postComplite")})
   .catch(error => {console.error(error)})
 }

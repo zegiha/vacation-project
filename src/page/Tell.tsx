@@ -1,4 +1,5 @@
-import {React, useEffect, useState} from 'react';
+import React from 'react';
+import {useEffect, useState} from 'react';
 import Header from "../components/Header/Header";
 import styled from "styled-components";
 import {Title} from "../atoms/Atomic";
@@ -29,7 +30,7 @@ const Tell = () => {
 
   const posting = useMutation(
     {
-      mutationFn: (input) => postNewNotice(input),
+      mutationFn: (input: object) => postNewNotice(input),
       onSuccess: async () => {
         navigate('/hear');
       },

@@ -1,17 +1,24 @@
 import React from 'react';
 import styled from "styled-components";
 
-const UserNameAndTitleTell = ({setUserName, userName, setTitle, title, warn}) => {
+interface PropsTypes{
+  setUserName: (contents: string) => void;
+  userName: string;
+  setTitle: (contents: string) => void;
+  title: string;
+  warn: {
+    title: boolean;
+    contents: boolean;
+    userName: boolean;
+  };
+}
+
+const TitleEditNotice = ({setTitle, title, warn}: PropsTypes) => {
   return (
     <>
       <Titles>
-        <FileContents>이름</FileContents>
-        <TitleInput type={'text'} placeholder={'익명도 가능해요!'} onChange={e => setUserName(e.target.value)} defaultValue={userName}/>
-        {warn.userName ? <Warn>필수항목입니다!</Warn> : <></>}
-      </Titles>
-      <Titles>
         <FileContents>제목</FileContents>
-        <TitleInput type={'text'} placeholder={'제목을 입력해주세요!'} onChange={e => setTitle(e.target.value)} defaultValue={title}/>
+        <TitleInput type={'text'} placeholder={'제목을 입력해주세요!'} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)} defaultValue={title}/>
         {warn.title ? <Warn>필수항목입니다!</Warn> : <></>}
       </Titles>
     </>
@@ -51,4 +58,4 @@ const Titles = styled.div`
   gap: 15px;
 `;
 
-export default UserNameAndTitleTell;
+export default TitleEditNotice;

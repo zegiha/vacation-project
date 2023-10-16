@@ -12,7 +12,7 @@ const Details = () => {
   const { noticeData, index } = location.state;
   const [noticeDel, setNoticeDel] = useState(false);
 
-  function checkVidoe(fileEditor) {
+  function checkVidoe(fileEditor: string) {
     if(fileEditor === '.mp4' || fileEditor === '.mov') return true;
     else return false;
   }
@@ -37,7 +37,7 @@ const Details = () => {
               <>
                 <Divider/>
                 <ImgContainer>
-                  {noticeData.uploadImageList.map((img, i) => {
+                  {noticeData.uploadImageList.map((img: any, i: number) => {
                     return(
                       checkVidoe(img.uploadFilename.substr(img.uploadFilename.length -4)) ? (
                         <Video controls key={i}>

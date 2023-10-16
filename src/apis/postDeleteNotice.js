@@ -13,7 +13,7 @@ export const postDeletNotice = async (input) => {
         "Content-Type": 'application/json'
       }
     }
-    return axios.post('https://coinpick365.com:8081/api/v1/board/del', sendData, config);
+    return axios.post('https://josunghun.life/api/v1/board/del', sendData, config);
   } catch (e) {
     return e;
   }

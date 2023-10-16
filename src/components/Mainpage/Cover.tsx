@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Background from '../../assets/Mainpage/background.png'
 import Arrow from '../../assets/Mainpage/arrow.svg'
 
-const Cover = ({sc}) => {
+const Cover = ({sc}: { sc: () => void }) => {
   return (
     <CoverContainer>
       <CoverWrapper>

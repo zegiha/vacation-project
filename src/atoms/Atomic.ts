@@ -6,7 +6,7 @@ export const MainContainer = styled.div`
   margin: 0 auto;
   width: 100%;
 `;
-export const MainWrapper = styled.div`
+export const MainWrapper = styled.div<{gap: string}>`
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -44,7 +44,7 @@ export const Contents = styled.div`
     width: 450px;
   }
 `;
-export const Point = styled.span`
+export const Point = styled.span<{size: string; weight: string}>`
   color: transparent;
   background: var(--text-point);
   font-family: 'Pretendard';

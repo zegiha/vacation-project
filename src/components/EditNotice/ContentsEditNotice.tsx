@@ -1,12 +1,22 @@
 import React from 'react';
 import styled from "styled-components";
 
-const ContentsEditNotice = ({setContents, contents, warn}) => {
+interface PropsType{
+  setContents: (contents: string) => void;
+  contents: string;
+  warn: {
+    title: boolean;
+    contents: boolean;
+    userName: boolean;
+  };
+}
+
+const ContentsEditNotice = ({setContents, contents, warn}: PropsType) => {
   return (
     <>
       <ContentsBox>
         <FileContents>내용</FileContents>
-        <Textarea placeholder={'내용을 적어주세요!'} onChange={e => setContents(e.target.value)} defaultValue={contents} height={'300px'}/>
+        <Textarea placeholder={'내용을 적어주세요!'} onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setContents(e.target.value)} defaultValue={contents} height={'300px'}/>
         {warn.contents ? <Warn>필수항목입니다!</Warn> : <></>}
       </ContentsBox>
     </>
@@ -26,7 +36,7 @@ const Warn = styled.div`
   color: #FF2E2E;
   font-size: 17px;
 `;
-const Textarea = styled.textarea`
+const Textarea = styled.textarea<{height: string}>`
   display: flex;
   width: calc(100% - 30px);
   height: ${(props) => props.height};

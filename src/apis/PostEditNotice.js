@@ -34,7 +34,7 @@ export const PostEditNotice = async(input) => {
     formData.append("files", el);
   });
 
-  await axios.post('https://coinpick365.com:8081/api/v1/board/edit', formData, config)
+  await axios.post('https://josunghun.life/api/v1/board/edit', formData, config)
     .then(res => {console.log(`Complited!!\n${res}`)})
     .catch(error => {console.error(error)})
 }

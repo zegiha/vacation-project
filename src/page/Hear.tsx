@@ -10,7 +10,7 @@ import {getNoticeInfo} from "../apis/getNoticeInfo";
 const Hear = () => {
   const { data, isError, isLoading, error } = useQuery(['noticeInfoKey'], getNoticeInfo);
 
-  function checkVidoe(fileEditor) {
+  function checkVidoe(fileEditor: string) {
     if(fileEditor === '.mp4' || fileEditor === '.mov') return true;
     else return false;
   }
@@ -28,7 +28,7 @@ const Hear = () => {
         <Wrapper>
           <Title data-aos={"fade-up"}>다른 선생님분들의 이야기</Title>
           <Box data-aos={"fade-up"}>
-            {data.data.map((n, i) => {
+            {data.data.map((n: any, i: number) => {
               return(
                 <Item key={i} to={`/details/:${i}`} state={{noticeData: n, index: i}}>
                   {

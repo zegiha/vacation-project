@@ -1,37 +1,51 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styled from "styled-components";
-import {useState} from "react";
 
-const FileTell = ({imgSrc, setImgSrc, files, setFiles}) => {
+interface PropsType{
+  imgSrc: string[];
+  setImgSrc: (contents: any) => void;
+  files: any;
+  setFiles: (contents: any[]) => void;
+  delFiles: string;
+  setDelFiles: (contents: string) => void;
+}
+
+const FileEditNotice = ({imgSrc, setImgSrc, files, setFiles, delFiles, setDelFiles}: PropsType) => {
   const [isFileEditor, setIsFileEditor] = useState(false);
   const [isSameFile, setIsSameFile] = useState(false);
 
-  function deleteExImg(index) {
-    const copyImgSrc = [...imgSrc];
+  function deleteExImg(index: number) {
+    const copyImgSrc: string[] = [...imgSrc];
     copyImgSrc.splice(index, 1);
     setImgSrc([...copyImgSrc]);
+
+    if(delFiles !== '') setDelFiles(`${delFiles}:${files[index].uuid}`);
+    else setDelFiles(`${files[index].uuid}`);
 
     const copyFiles = [...files];
     copyFiles.splice(index, 1);
     setFiles([...copyFiles]);
   }
 
-  const uploadFile = async (e) => {
-    let fileList = Array.from(e.target.files);
+  const uploadFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const fileList = e.currentTarget.files as FileList;
 
     // 비동기 작업을 처리하기 위해 Promise를 사용
-    const readFile = (file) => {
+    const readFile = (file: any) => {
       return new Promise((resolve, reject) => {
-        let isPass = false;
         const reader = new FileReader();
+        let isPass: string|boolean = false;
         reader.readAsDataURL(file);
         reader.onload = () => {
-          for(const originalFile of files){
-            if(originalFile.name === file.name){
-              isPass = 'already';
-              setIsSameFile(true)
-              break;
-            }
+          for(const originalFile of files) if(originalFile.name === file.name) {
+            isPass = 'already';
+            setIsSameFile(true)
+            break;
+          }
+          for(const originalFile of files) if(originalFile.originFileName === file.name) {
+            isPass = 'already';
+            setIsSameFile(true)
+            break;
           }
 
           const fileEditor = file.name.substr(file.name.indexOf('.') + 1);
@@ -60,7 +74,7 @@ const FileTell = ({imgSrc, setImgSrc, files, setFiles}) => {
       // 각 파일에 대해 readFile 함수를 호출하여 주소 값을 받아옴
       for (const file of fileList) {
         const imgSrcItem = await readFile(file);
-        if(imgSrcItem !== 'already' && imgSrcItem !== 'diffFile') {
+        if (imgSrcItem !== 'already' && imgSrcItem !== 'diffFile') {
           imgSrcArray.push(imgSrcItem);
 
           // 이미지 주소 값을 업데이트
@@ -85,7 +99,7 @@ const FileTell = ({imgSrc, setImgSrc, files, setFiles}) => {
       <FileContainer>
         <PictureContainer>
           {
-            imgSrc.map((item, index) => {
+            imgSrc.map((item: string, index: number) => {
               return(
                 <Picture src={item} key={index} onClick={() => deleteExImg(index)}/>
               )
@@ -98,7 +112,7 @@ const FileTell = ({imgSrc, setImgSrc, files, setFiles}) => {
         </WarnRight>
         <FileLabel htmlFor='FileAdd'><FileContents>첨부 파일 추가</FileContents></FileLabel>
       </FileContainer>
-      <FileAdd accept=".mp4, .png, .jpg, .mov, .jpeg" type="file" multiple={true} id={'FileAdd'} onChange={uploadFile}/>
+      <FileAdd accept="image/*, video/*" type="file" multiple={true} id={'FileAdd'} onChange={uploadFile}/>
     </Container>
   );
 };
@@ -173,4 +187,4 @@ const Container = styled.div`
   align-items: center;
   gap: 10px;
 `;
-export default FileTell;
+export default FileEditNotice;

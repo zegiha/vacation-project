@@ -2,34 +2,67 @@ import React, {useEffect, useState} from 'react';
 import {Title} from "../../atoms/Atomic";
 import styled from "styled-components";
 import { useMutation } from "@tanstack/react-query";
-import {postDeletNotice} from "../../apis/postDeleteNotice";
 import { useNavigate } from 'react-router-dom';
+import {PostEditNotice} from "../../apis/PostEditNotice";
 
-const DelModal = ({noticeBoolChange, noticePassword, noticeTitle, noticeContents}) => {
+interface PropsTypes{
+  noticeData: {
+    id: string;
+    title: string;
+    editPassword: string;
+  }
+  isModalChange: () => void;
+  edit: {
+    title: string;
+    contents: string;
+  }
+  delFiles: any;
+  files: any;
+}
+
+interface postingEditNoticeTypes{
+  id: string;
+  title: string;
+  editTitle: string;
+  editContents: string;
+  password: string;
+  delFiles: any;
+  files: any;
+}
+
+const EditModal = ({noticeData, isModalChange, edit, delFiles, files}: PropsTypes) => {
   const [passIn, setPassIn] = useState('');
-  const [isCorrect, setIsCorrect] = useState()
+  const [isCorrect, setIsCorrect] = useState<boolean>()
   const navigate = useNavigate();
 
-  const deleteNotice = useMutation(
+  const PostingEditNotice = useMutation(
     {
-      mutationFn: (input) => postDeletNotice(input),
+      mutationFn: (input: postingEditNoticeTypes) => PostEditNotice(input),
       onSuccess: async () => {
-        alert('삭제되었습니다');
-        navigate(-1);
+        alert('수정되었습니다!');
+        navigate(-2);
       },
       onError: (error) => {
         alert('문제가 발생하였습니다\n다시 시도하여 주십시오');
         console.error(error);
-        navigate(-1);
+        navigate(-2);
       }
     }
   )
 
-  function delClicked() {
-    if(passIn.trim() === noticePassword.trim()) {
+  function editClicked() {
+    if(passIn.trim() === noticeData.editPassword.trim()) {
       setIsCorrect(false);
-      if(window.confirm("정말로 삭제하시겠습니까?")) {
-        deleteNotice.mutate({noticePassword, noticeTitle, noticeContents});
+      if(window.confirm("수정하시겠습니까?")) {
+        PostingEditNotice.mutate({
+          id: noticeData.id,
+          title: noticeData.title,
+          editTitle: edit.title,
+          editContents: edit.contents,
+          password: noticeData.editPassword,
+          delFiles: delFiles,
+          files: files
+        })
       }
     } else setIsCorrect(true);
   }
@@ -37,38 +70,42 @@ const DelModal = ({noticeBoolChange, noticePassword, noticeTitle, noticeContents
   useEffect(() => {
     if(passIn.slice(-1) === '\n') {
       setPassIn(passIn.replace('\n', ''));
-      delClicked();
+      editClicked();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [passIn])
 
   return (
     <>
-      {deleteNotice.isLoading ? (
-        <ModalContainer>
-          <ModalBackground/>
-          <Modal>
-            <h2>삭제하고 있어요!</h2>
-          </Modal>
-        </ModalContainer>
-      ):(
-        <ModalContainer>
-          <ModalBackground onClick={() => noticeBoolChange()}/>
-          <Modal>
-            <Title>게시물 지우기</Title>
-            <ContentsBox>
-              <Contents>비밀번호</Contents>
-              <Textarea placeholder={'비밀번호를 적어주세요!'} onChange={(e) => {
-                setPassIn(e.target.value);
-              }} height={'24px'} value={passIn}/>
-              {isCorrect ? <Correct >비밀번호가 일치하지 않아요!</Correct> : <></>}
-            </ContentsBox>
-            <Left>
-              <EditNotice onClick={() => noticeBoolChange()}>취소</EditNotice>
-              <DelNotice onClick={() => delClicked()}>게시물 삭제</DelNotice>
-            </Left>
-          </Modal>
-        </ModalContainer>
+      {PostingEditNotice.isLoading ? (
+        <>
+          <ModalContainer>
+            <ModalBackground/>
+            <Modal>
+              <h2>수정하고 있어요!</h2>
+            </Modal>
+          </ModalContainer>
+        </>
+      ) : (
+        <>
+          <ModalContainer>
+            <ModalBackground onClick={() => isModalChange}/>
+            <Modal>
+              <Title>게시물 수정하기</Title>
+              <ContentsBox>
+                <Contents>비밀번호</Contents>
+                <Textarea placeholder={'비밀번호를 적어주세요!'} onChange={(e) => {
+                  setPassIn(e.target.value);
+                }} height={'24px'} value={passIn}/>
+                {isCorrect ? <Correct>비밀번호가 일치하지 않아요!</Correct> : <></>}
+              </ContentsBox>
+              <Left>
+                <CancelNotice onClick={() => isModalChange()}>취소</CancelNotice>
+                <EditNotice onClick={() => editClicked()}>게시물 수정</EditNotice>
+              </Left>
+            </Modal>
+          </ModalContainer>
+        </>
       )}
     </>
   );
@@ -78,7 +115,7 @@ const Correct = styled.div`
   color: #FF2E2E;
   font-size: 17px;
 `;
-const EditNotice = styled.div`
+const CancelNotice = styled.div`
   display: flex;
   padding: 10px 15px;
   justify-content: center;
@@ -103,7 +140,7 @@ const Left = styled.div`
   justify-content: end;
   gap: 10px;
 `;
-const DelNotice = styled.div`
+const EditNotice = styled.div`
   display: flex;
   width: max-content;
   padding: 11px 10px 11px 10px;
@@ -111,7 +148,7 @@ const DelNotice = styled.div`
   align-items: center;
   gap: 10px;
   border-radius: 3px;
-  background: #FF5151;
+  background: var(--text-subtitle, #FF7C17);
   
   color: #FFF;
   font-size: 17px;
@@ -121,11 +158,11 @@ const DelNotice = styled.div`
   
   transition: all 0.2s;
   &:hover {
-    background: #FF2E2E;
+    background: #ee7316;
     transform: scale(1.05);
   }
 `;
-const Textarea = styled.textarea`
+const Textarea = styled.textarea<{height: string}>`
   display: flex;
   width: calc(100% - 34px);
   height: ${(props) => props.height};
@@ -197,4 +234,4 @@ const ModalContainer = styled.div`
   width: 100%;
   height: 100%;
 `;
-export default DelModal;
+export default EditModal;

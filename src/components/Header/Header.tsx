@@ -1,15 +1,15 @@
 import React, {useState, useEffect, useRef} from 'react';
 import styled from "styled-components";
-import Logo from "../../assets/Mainpage/logo.svg"
 import { Link } from 'react-router-dom';
+import Logo from "../../assets/Mainpage/logo.svg"
 import OpenImg from '../../assets/Header/open.svg'
 import CloseImg from '../../assets/Header/close.svg'
 import SideModal from "./SideModal";
 
-const Header = (props) => {
+const Header = (props: {isNotHome: boolean}) => {
   const [nav, setNav] = useState(props.isNotHome);
   const [sideBar, setSideBar] = useState(false);
-  const headerRef = useRef(null);
+  const headerRef = useRef<any>();
 
   useEffect(() => {
     if(typeof window !== "undefined" && !props.isNotHome) {
@@ -60,11 +60,10 @@ const Header = (props) => {
 };
 
 const SideButtonImg = styled.img`
-  filter: ${(props) => (props.navBar ? "var(--text-title, #2C231E)" : "#f5f5f5")};
   width: 20px;
   height: 20px;
 `;
-const SideButton = styled.div`
+const SideButton = styled.div<{navBar: boolean}>`
   z-index: 12;
   padding: 8px;
   color: ${(props) => (props.navBar ? "var(--text-title, #2C231E)" : "#f5f5f5")};
@@ -84,7 +83,7 @@ const Desktop = styled.div`
   z-index: 9;
   @media(max-width: 740px) {display: none}
 `;
-const TextButton = styled(Link)`
+const TextButton = styled(Link)<{navBar: boolean}>`
   color: ${(props) => (props.navBar ? "var(--text-contents, #524437)" : "#f5f5f5")};
   font-family: 'Pretendard', sans-serif;
   font-size: 19px;
@@ -110,7 +109,7 @@ const Left = styled.img`
   width: 100px;
   height: 30px;
 `;
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.div<{navBar: boolean}>`
   display: flex;
   justify-content: center;
   width: 100%;

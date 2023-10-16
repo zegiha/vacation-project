@@ -3,7 +3,7 @@ import styled from "styled-components";
 import {Contents, MainContainer, MainWrapper, Point, Title} from "../../atoms/Atomic";
 import news from '../../assets/Mainpage/news.png'
 
-const Introduce = ({scRef}) => {
+const Introduce = ({scRef}: {scRef: any}) => {
   return (
     <MainContainer ref={scRef}>
       <MainWrapper gap={'100px'}>
@@ -56,7 +56,7 @@ const News = styled.img`
     width: 242px;
   }
 `;
-const Blank = styled.div`
+const Blank = styled.div<{num: string}>`
   width: 0;
   height: ${(props) => props.num};
 `;

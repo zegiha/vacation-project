@@ -2,7 +2,7 @@ import React from 'react';
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 
-const SideModal = ({setSideBar}) => {
+const SideModal = ({setSideBar}: { setSideBar: (contents: boolean) => void }) => {
   return (
     <ModalContainer>
       <ModalBackground onClick={() => setSideBar(false)}/>
